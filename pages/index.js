@@ -7,7 +7,7 @@ export default () => (
     <Hero />
     <TextList />
     <Content />
-    <style global>{`
+    <style global="true">{`
     :root {
       --main-background: #f9faff;
       --main-dark-blue: #040F62;

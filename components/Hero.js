@@ -47,7 +47,6 @@ export default () => (
       .header-line p {
         margin-block-end: 0px;
         text-transform: uppercase;
-        
       }
 
       .hero-filter {
@@ -65,11 +64,11 @@ export default () => (
       }
 
       .teko {
-          font-family: 'Teko', sans-serif;
+        font-family: "Teko", sans-serif;
       }
 
       .benchnine {
-          font-family: font-family:  'BenchNine', sans-serif; 
+        font-family: "BenchNine", sans-serif;
       }
       .name h1 {
         font-size: 600%;
@@ -77,39 +76,36 @@ export default () => (
         color: var(--main-light-blue);
       }
       @media (min-width: 320px) and (max-width: 480px) {
-       .container {
-         margin-top: 8%;
-       }
-       .name h1 {
-         font-size: 200%;
-       }
+        .container {
+          margin-top: 8%;
+        }
+        .name h1 {
+          font-size: 200%;
+        }
 
-       .hero-img {
-         grid-column: 1/4;
-         grid-row: 2/4;
-         overflow: hidden;
-       }
+        .hero-img {
+          grid-column: 1/4;
+          grid-row: 2/4;
+          overflow: hidden;
+        }
 
-       .hero-img img {
-         width: 144%;
-         height: auto;
-       }
-
+        .hero-img img {
+          width: 144%;
+          height: auto;
+        }
       }
 
       @media (min-width: 481px) and (max-width: 900px) {
-  
         .name h1 {
           margin-block-start: 0;
         }
         .container {
           grid-template-rows: 20% 75% 5%;
         }
-        
       }
 
       @media (min-width: 2000px) and (max-width: 5000px) {
-        .container { 
+        .container {
           width: 1800px;
           margin: auto;
         }
