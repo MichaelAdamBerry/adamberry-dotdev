@@ -14,23 +14,18 @@ export default class Card extends React.Component {
   render() {
     const { title, text, tools, tags } = this.props;
     const { hovered } = this.state;
+    const link = title === "my_reps" || "Grateful Data" ? "project" : "code";
     return (
       <div
         onMouseOver={this.setHover}
         onMouseLeave={this.cancelHover}
         className="card">
         <div className="sidebar" />
-        <div className="vert">
-          <h4>
-            <span>project</span>
-          </h4>
-        </div>
         <div className="card-main">
           <div className="title">
             <h3>{title}</h3>
           </div>
           <div className="tags">{tags.join(", ")}</div>
-
           <div className="content">
             <p>{text}</p>
           </div>
@@ -41,17 +36,21 @@ export default class Card extends React.Component {
             to={{
               marginLeft: hovered ? "3em" : "0",
               textUnderline: hovered ? "underline" : "none",
-              size: hovered ? "1.3em;" : "1em"
+              size: hovered ? "1.3em;" : "1em",
+              color: hovered
+                ? "var(--main-dark-blue)"
+                : "var(--main-light-blue)"
             }}
             config={config.wobbly}>
-            {({ marginLeft, textUnderline, size }) => (
+            {({ marginLeft, textUnderline, size, color }) => (
               <div
                 className="arrow"
                 style={{
                   marginLeft: marginLeft,
+                  color: color,
                   textDecoration: textUnderline
                 }}>
-                <span style={{ fontSize: size }}>{`view code `}</span>
+                <span style={{ fontSize: size }}>{`view ${link} `}</span>
                 <FontAwesomeIcon
                   icon={faLongArrowAltRight}
                   style={{
@@ -75,9 +74,9 @@ export default class Card extends React.Component {
           }
 
           .arrow {
-            color: var(--main-light-blue);
             font-style: italic;
-            padding: 1em 0;
+            padding: 1em 0 1.5em 0;
+            max-height: 1em;
           }
 
           .tags {
@@ -102,25 +101,7 @@ export default class Card extends React.Component {
             grid-column: 1;
             grid-row: 1/ 4;
             border-right: solid 5px;
-          }
-
-          .vert {
-            font-size: 17px;
-            grid-column: 1;
-            grid-row: 1/4;
-            justify-self: right;
-            white-space: nowrap;
-            writing-mode: tb;
-          }
-
-          .vert h4 {
-            text-align: left;
-            margin-top: 1em;
-          }
-
-          .vert span {
-            background-color: var(--main-light-blue);
-            padding: 1em 0 1em 0;
+            max-width: 45px;
           }
 
           h3 {
@@ -163,6 +144,7 @@ export default class Card extends React.Component {
               grid-template-columns: 10% 90%;
               width: 100vw;
               border-bottom: solid;
+              min-height: 100vh;
             }
             .vert {
               background-color: var(--main-light-blue);
@@ -172,8 +154,15 @@ export default class Card extends React.Component {
             .sidebar {
               z-index: 2;
             }
-            card-main {
+            .card-main {
               padding-top: 1em;
+              justify-content: center;
+              padding-left: 1em;
+            }
+            .tags {
+              margin: 0;
+              width: 100%;
+              text-align: center;
             }
           }
           @media (min-width: 481px) and (max-width: 900px) {

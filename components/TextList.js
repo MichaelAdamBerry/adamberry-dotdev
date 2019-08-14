@@ -3,10 +3,9 @@ export default () => (
     <div className="border" />
     <div className="text-content">
       <div className="about">
-        I build complex user interfaces. Passionate about front end development
-        and creating sites that people don't want to leave. My ideal Saturday is
-        taking something apart and then putting it back together to see how it
-        works.
+        Creative coder with a passion for building user interfaces and data
+        visualizations. Interested in telling stories with code and the ways in
+        which web development can create positive change. Father of dogs.
       </div>
     </div>
     <p>SKILLS</p>
@@ -17,6 +16,7 @@ export default () => (
         <li>CSS3 / Grid / Flexbox</li>
         <li>Bootstrap</li>
         <li>JQuery</li>
+        <li>D3.js</li>
         <li>React / Redux</li>
         <li>Node / Express</li>
         <li>Python</li>

@@ -21,7 +21,7 @@ export default () => {
             </a>
           </div>
           <div className="item">
-            <a href="mailto:michaeladamberry3@gmail.com">
+            <a href="mailto:me@adamberry.dev">
               <FontAwesomeIcon icon={faEnvelope} style={iconStyles} />
             </a>
           </div>

@@ -14,7 +14,18 @@ export default () => {
       <div className="hero-filter filter" />
       <div className="cards">
         <div className="one">
-          <a href="https://github.com/MichaelAdamBerry/my_reps2.0">
+          <a href="https://grateful-data.com">
+            <Card
+              url="https://grateful-data.com"
+              tags={["data vizualizations", "d3.js"]}
+              tools={["Javascript, D3.js"]}
+              title="Grateful Data"
+              text="What 30 years of setlist data can tell us about the career arc of the Grateful Dead. Interactive data visualizations from set list data gathered from setlist.fm"
+            />
+          </a>
+        </div>
+        <div className="three">
+          <a href="https://myreps20.michaeladamberry3.now.sh/">
             <Card
               tags={[
                 "client side apps",
@@ -23,6 +34,7 @@ export default () => {
                 "propublica",
                 "google"
               ]}
+              url=""
               tools={["react", "next.js"]}
               title="my_reps"
               text="Identify and connect with your elected officials. Leverages data from Google's Civics API and Propublica's Congress API"
@@ -30,37 +42,24 @@ export default () => {
           </a>
         </div>
         <div className="two">
-          <a href="https://github.com/MichaelAdamBerry/lancer">
+          <a href="https://github.com/MichaelAdamBerry/lancer" target="_blank">
             <Card
+              url=""
               tags={["c.r.u.d.", "web apps", "firebase", "freelancers"]}
               title="Free / Lancer"
-              text=" Scheduling application for freelancers. Track jobs, expenses, and payments. Data visualizations."
+              text=" Scheduling application for freelancers. Track jobs, expenses, and payments."
               tools={["react", "redux", "firebase"]}
             />
           </a>
         </div>
-        <div className="three">
+        <div className="four">
           <a href="https://github.com/MichaelAdamBerry/bookshelf">
             <Card
+              url=""
               tags={["full-stack", "web applications", "e-books", "google"]}
               tools={["node", "express", "react"]}
               title="Digital Bookshelf"
               text="Search and save from catalogue free online e-books provided by Google Books. Built with Node, Express, and React."
-            />
-          </a>
-        </div>
-        <div className="four">
-          <a href="https://github.com/MichaelAdamBerry/GeoPolls">
-            <Card
-              tags={[
-                "data science",
-                "web-scraper",
-                "data cleaning",
-                "politics"
-              ]}
-              tools={["python", "sql", "javascript"]}
-              title="Poll Site GeoLocator"
-              text="Scrapes and formats addresses of Brooklyn Polling sites from text file and renders to Google Maps."
             />
           </a>
         </div>
@@ -195,6 +194,11 @@ export default () => {
           .cards {
             display: block;
             margin: 0;
+            scroll-snap-type: y mandatory;
+          }
+
+          .cards div {
+            scroll-snap-align: start;
           }
 
           .contact {
