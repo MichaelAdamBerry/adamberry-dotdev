@@ -1,29 +1,10 @@
 import { useSpring, animated } from "react-spring";
 import Nav from "../components/Nav";
 import Title from "../components/Title";
+import Skills from "../components/about-components/skills";
+import Bio from "../components/about-components/bio";
+import OtherWork from "../components/about-components/other-work";
 export default () => {
-  const skills = {
-    skills: [
-      "Advanced Javascript",
-      "SVG animations",
-      "Adobe Illustrator",
-      "HTML",
-      "CSS with grid and flexbox"
-    ],
-    frameworks: [
-      "React",
-      "Redux",
-      "Gatsby",
-      "Next",
-      "Shopify",
-      "D3.js",
-      "JQuery",
-      "Node",
-      "Express"
-    ],
-    other: ["Python", "Data Journalism", "Infographics", "Generative Art"]
-  };
-
   return (
     <>
       <div className="about-page">
@@ -36,48 +17,9 @@ export default () => {
           <h3>blog</h3>
         </div>
         <div className="content">
-          <h3>Toolbox and Skillset</h3>
-          <h4>Primary Skills</h4>
-          <ul>
-            {skills.skills.map(skill => {
-              return <li key={skill}>{skill}</li>;
-            })}
-          </ul>
-
-          <h4>Libraries and Frameworks</h4>
-          <ul>
-            {skills.frameworks.map(skill => {
-              return <li key={skill}>{skill}</li>;
-            })}
-          </ul>
-
-          <h4>Other Interest</h4>
-          <ul>
-            {skills.other.map(skill => {
-              return <li key={skill}>{skill}</li>;
-            })}
-          </ul>
-
-          <h3>Bio</h3>
-          <p>
-            Lorem ipsum dolor amet af you probably haven't heard of them
-            truffaut, umami cred venmo microdosing. Bicycle rights before they
-            sold out shaman leggings pug 3 wolf moon salvia marfa flannel
-            chartreuse schlitz. Typewriter sriracha beard vexillologist vape.
-            Semiotics chartreuse authentic umami mixtape bitters edison bulb.
-            Freegan hella hexagon enamel pin put a bird on it, beard 90's
-            gluten-free migas pinterest fingerstache church-key wolf hammock.
-          </p>
-          <h3>Other Work</h3>
-          <p>
-            Lorem ipsum dolor amet af you probably haven't heard of them
-            truffaut, umami cred venmo microdosing. Bicycle rights before they
-            sold out shaman leggings pug 3 wolf moon salvia marfa flannel
-            chartreuse schlitz. Typewriter sriracha beard vexillologist vape.
-            Semiotics chartreuse authentic umami mixtape bitters edison bulb.
-            Freegan hella hexagon enamel pin put a bird on it, beard 90's
-            gluten-free migas pinterest fingerstache church-key wolf hammock.
-          </p>
+          <Skills />
+          <Bio />
+          <OtherWork />
         </div>
       </div>
 
@@ -104,19 +46,40 @@ export default () => {
 
         .content {
           grid-row: 2/6;
-          grid-column: 2/4;
+          grid-column: 1/5;
           max-width: 500px;
+          padding-left: 1rem;
           justify-self: center;
-          align-self: center;
+          
           opacity: 0.99;
           z-index: 200;
+          max-width: 600px;
+        }
+
+        .content-item {
+          padding: 0.5rem 1rem;
+          background-color: #171414;
+          box-shadow: 20px 20px 60px #a95c7d;
+          border-radius: 5px;
+          border: solid 1px #73133e;
+      }
         }
 
         ul {
-          list-decoration-style: none;
+          list-style: none;
           padding: 0;
           display: flex;
           flex-wrap: wrap;
+        }
+
+        li :after {
+          content: ", ";
+          padding-right: 1rem;
+          color: black;
+        }
+
+        li:last-of-type:after {
+          content: " ";
         }
 
         .social {
@@ -136,9 +99,9 @@ export default () => {
           width: 100%;
           height: 100%;
           min-height: 100vh;
-          max-height: 100vh;
+
           background-size: cover;
-          background-image: url("../static/bg-code-img.jpg");
+          background-image: url("../static/bg-workspace.jpg");
           display: grid;
           grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
           grid-template-rows: 1fr 1fr 1fr 1fr 1fr;

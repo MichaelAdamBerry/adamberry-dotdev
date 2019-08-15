@@ -49,7 +49,7 @@ const projects = [
   }
 ];
 
-const Video = ({ isOpen, setVideoOpen, src, description }) => {
+const Video = ({ isOpen, setVideoOpen, src, description, title }) => {
   const { x } = useSpring({
     x: isOpen ? 1 : 0
   });
@@ -60,19 +60,23 @@ const Video = ({ isOpen, setVideoOpen, src, description }) => {
         style={{
           opacity: x.interpolate(x => x),
           transform: x.interpolate(x => `scale(${x})`),
-          gridRow: "2/5",
+          gridRow: "1/6",
           gridColumn: "2 / 5",
-          margin: "0 5%",
           justifySelf: "center",
           alignSelf: "center",
-          zIndex: "100"
+          zIndex: "100",
+          border: "solid 6px",
+          borderRadius: "3%",
+          boxShadow: "3rem 3rem 15rem #bb9d9d77",
+          pointerEvents: "none"
         }}>
+        <div className="description-container">
+          <h2>{title}</h2>
+          <p>{description}</p>
+        </div>
         <video autoPlay loop muted playsInline key={src}>
           <source src={src} type="video/mp4" />
         </video>
-        <div className="description-container">
-          <p>{description}</p>
-        </div>
       </animated.div>
       <div
         style={{ display: `${isOpen ? "block" : "none"}` }}
@@ -84,21 +88,9 @@ const Video = ({ isOpen, setVideoOpen, src, description }) => {
       </div>
       <style jsx>
         {`
-          .featured-video {
+          .overlay {
             grid-row: 1/6;
             grid-column: 1/6;
-            margin: 0 5%;
-            justify-self: center;
-            justify-items: center;
-            align-self: center;
-            z-index: 100;
-            background-color: black;
-            box-shadow: 100px 100px 200px pink;
-          }
-
-          .overlay {
-            grid-row: 2/5;
-            grid-column: 2/5;
             width: 100%;
             background-color: black;
             opacity: 0.3;
@@ -106,8 +98,13 @@ const Video = ({ isOpen, setVideoOpen, src, description }) => {
           }
 
           .description-container {
-            background-color: #2f2f2f99;
             color: white;
+            max-width: 650px;
+            margin: auto;
+          }
+
+          .description-container h2 {
+            text-align: center;
           }
 
           .close-container {
@@ -115,7 +112,6 @@ const Video = ({ isOpen, setVideoOpen, src, description }) => {
             grid-column: 2/5;
             position: relative;
             z-index: 99;
-            background-color: #2f2f2f99;
           }
 
           .close-container button {
@@ -124,14 +120,14 @@ const Video = ({ isOpen, setVideoOpen, src, description }) => {
             right: 10px;
             width: 30px;
             z-index: 102;
+            cursor: pointer;
           }
 
           .close-container img {
             z-index: 102;
           }
 
-          video,
-          description-container {
+          video {
             max-width: 100%;
             height: auto;
             margin: auto;
@@ -146,10 +142,12 @@ const Portfolio = () => {
   const [mp4Src, setMp4Src] = useState();
   const [videoIsOpen, setVideoOpen] = useState(false);
   const [description, setDescription] = useState();
+  const [title, setTitle] = useState();
 
   const loadVideo = project => {
-    const { mp4, description } = project;
+    const { mp4, description, title } = project;
     setMp4Src(mp4);
+    setTitle(title);
     setDescription(description);
     setVideoOpen(true);
   };
@@ -200,7 +198,7 @@ const Portfolio = () => {
               gridColumn: "1/6",
               gridRow: "1/6",
               backgroundColor: "black",
-              opacity: `${videoIsOpen ? ".7" : ".0"}`,
+              opacity: `${videoIsOpen ? ".85" : ".0"}`,
               pointerEvents: "none"
             }}
           />
@@ -209,6 +207,7 @@ const Portfolio = () => {
             src={mp4Src}
             description={description}
             setVideoOpen={setVideoOpen}
+            title={title}
           />
         </div>
 
