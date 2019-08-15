@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Layout from "../components/MyLayout";
 import ProjectCard from "../components/ProjectCard";
 import { useSpring, animated } from "react-spring";
+import Nav from "../components/Nav";
+import Title from "../components/Title";
 
 const projects = [
   {
@@ -83,13 +85,14 @@ const Video = ({ isOpen, setVideoOpen, src, description }) => {
       <style jsx>
         {`
           .featured-video {
-            grid-row: 2/5;
-            grid-column: 2/5;
+            grid-row: 1/6;
+            grid-column: 1/6;
             margin: 0 5%;
             justify-self: center;
             justify-items: center;
             align-self: center;
             z-index: 100;
+            background-color: black;
             box-shadow: 100px 100px 200px pink;
           }
 
@@ -156,7 +159,8 @@ const Portfolio = () => {
       <Layout>
         <div className="site-container">
           <div className="gradient" />
-
+          <Nav current="portfolio" />
+          <Title name="Work Examples" />
           <div
             className="project card-1"
             onClick={() => loadVideo(projects[3])}>
@@ -190,6 +194,16 @@ const Portfolio = () => {
           <div className="project card-8">
             <ProjectCard cardObj={projects[0]} />
           </div>
+          <div
+            className="modalOverlay"
+            style={{
+              gridColumn: "1/6",
+              gridRow: "1/6",
+              backgroundColor: "black",
+              opacity: `${videoIsOpen ? ".7" : ".0"}`,
+              pointerEvents: "none"
+            }}
+          />
           <Video
             isOpen={videoIsOpen}
             src={mp4Src}

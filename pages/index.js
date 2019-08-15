@@ -1,36 +1,16 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import Link from "next/link";
-import styled from "styled-components";
+import ContactCard from "../components/ContactCard";
 import Layout from "../components/MyLayout";
-import { useState } from "react";
+import Nav from "../components/Nav";
 import { useSpring, animated, config } from "react-spring";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-library.add(fab);
+import Title from "../components/Title";
 
 export default () => {
-  const buttonClick = e => {
-    e.preventDefault();
-    console.log("button clicked");
-  };
-
-  const StyledLink = styled.a`
-    color: white;
-    text-decoration: none;
-  `;
-
-  const iconStyles = {
-    width: "1em",
-    height: "1em"
-  };
-
-  const { opacity, xyz } = useSpring({
+  const { opacity } = useSpring({
     from: {
-      xyz: [0, -50, 0],
       opacity: 0
     },
     opacity: 1,
-    xyz: [0, -1, 1],
+
     config: config.wobbly
   });
   return (
@@ -38,66 +18,19 @@ export default () => {
       <Layout>
         <div className="site-container">
           <div className="gradient" />
-          <div className="name">
-            <h1>Michael Adam Berry</h1>
-            <animated.h1
-              style={{
-                display: "flex",
-                margin: "1rem 0",
-                boxShadow: `5px, 5px 10px black`,
-                transform: xyz.interpolate(
-                  (x, y, z) => `translate3d(${x}rem, ${y}rem, ${z}px )`
-                )
-              }}>
-              <span>.</span>
-            </animated.h1>
-          </div>
+          <Title name={"Michael Adam Berry"} />
           <div className="quote-mark">
             <img alt="large quotation mark" src="../static/quote-marg-lg.svg" />
           </div>
           <div className="quote">
-            <p> How can we make this better?</p>
+            <p> Make great things and then make them better</p>
           </div>
-          <div className="nav">
-            <Link href="/about" passHref>
-              <StyledLink>About</StyledLink>
-            </Link>
-            <Link href="/portfolio" passHref>
-              <StyledLink>Portfolio</StyledLink>
-            </Link>
-            <Link href="/contact" passHref>
-              <StyledLink>Contact</StyledLink>
-            </Link>
-            <p> | </p>
-            <div className="item">
-              <a href="https://github.com/michaeladamberry">
-                <FontAwesomeIcon icon={["fab", "github"]} style={iconStyles} />
-              </a>
-            </div>
-            <div className="item">
-              <a href="https://linkedin/in/michaeladamberry">
-                <FontAwesomeIcon
-                  icon={["fab", "linkedin"]}
-                  style={iconStyles}
-                />
-              </a>
-            </div>
-            <div className="item">
-              <a href="https://twitter.com/michaeladamberry">
-                <FontAwesomeIcon icon={["fab", "twitter"]} style={iconStyles} />
-              </a>
-            </div>
-          </div>
+          <Nav current="home" />
           <div className="content">
             <h2>Freelance</h2>
             <h1>Web Developer</h1>
             <p>I love to think and build interesting things</p>
-            <form onSubmit={buttonClick}>
-              <input type="text" placeholder="Email Address" />
-              <input type="text" placeholder="Project Summarry" />
-              <input type="file" className="custom-file-input" title=" " />
-              <button onClick={buttonClick}>Request a Quote</button>
-            </form>
+            <ContactCard />
           </div>
         </div>
 
@@ -137,19 +70,7 @@ export default () => {
           );
         }
 
-        .name {
-          grid-column: 1/3;
-          grid-row: 1/2;
-          justify-self: center;
-          align-self: center;
-          color: white;
-          display: flex;
-          margin: 1rem 0;
-        }
-        
-        .name h1 {
-          margin: 1rem 0;
-        }
+
 
         .quote, .quote-mark {
           grid-column: 4/6;
@@ -166,25 +87,14 @@ export default () => {
           margin-left: -1rem;
         }
 
-        .nav {
-          grid-column: 4/6;
-          grid-row: 1/2;
-          align-self: center;
-          display: flex;
-          justify-content: space-around;
-        }
 
-        a {
-          color: white;
-          text-decoration: none;
-        }
         .content {
           grid-column: 2/5;
           grid-row: 2/5;
           align-self: center;
         }
 
-        .name span,
+
         .content h2 {
           color: #f6d327;
         }
@@ -207,10 +117,7 @@ export default () => {
           width: 20rem;
         }
 
-        .name span {
-          font-size: 3rem;
-          margin: 0;
-        }
+ 
 
         .content div {
           margin: 1rem 0;
