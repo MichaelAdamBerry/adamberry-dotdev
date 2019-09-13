@@ -42,19 +42,17 @@ export default ({ cardObj }) => {
             <div className="img-container">
               <img alt={title} src={img} />
             </div>
-
-            <animated.div
-              className="text"
-              style={{
-                opacity: x.interpolate(x => x),
-                gridRow: "1/4",
-                gridColumn: "1/4",
-                backgroundColor: "black",
-                paddingLeft: "1rem"
-              }}>
-              <h3>{title}</h3>
-              <p>{description}</p>
-            </animated.div>
+            <div className="text">
+              <animated.div
+                style={{
+                  minHeight: "100%",
+                  backgroundColor: "black",
+                  opacity: x.interpolate(x => x)
+                }}>
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </animated.div>
+            </div>
 
             <style jsx>
               {`
@@ -70,9 +68,15 @@ export default ({ cardObj }) => {
                   grid-column: 1/4;
                 }
 
+                .text {
+                  background-color: "black",
+                  paddingLeft: "1rem"
+                }
+
                 h3 {
                   color: white;
                   font-size: 1.1rem;
+                  margin-top: 0;
                 }
 
                 p {
@@ -83,6 +87,16 @@ export default ({ cardObj }) => {
                   width: 100%;
                   height: auto;
                 }
+
+                @media(max-width: 425px){      
+                  .text {
+                  display: none;
+                      }
+
+                  div.img-container {
+                    width: 100%;
+                  }
+              }
               `}
             </style>
           </div>

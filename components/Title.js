@@ -29,19 +29,19 @@ const Title = ({ name }) => {
       </div>
       <style jsx>{`
         .name {
-          grid-column: 1/3;
+          grid-column: 2/4;
           grid-row: 1/2;
-          justify-self: center;
+          justify-self: start;
           align-self: center;
-          color: white;
+          color: #861657;
           display: flex;
-          margin: 1rem 0;
+          margin-top: 1rem;
           opacity: 0.99;
           z-index: 20;
         }
 
         .name h1 {
-          margin: 1rem 0;
+          margin-top: 1rem;
           font-family: "Nunito", sans-serif;
         }
 
@@ -51,7 +51,22 @@ const Title = ({ name }) => {
         }
 
         .name span {
-          color: #f6d327;
+          color: var(--blueish);
+        }
+
+        @media (max-width: 800px) {
+          .name {
+            grid-column: 1/5;
+            justify-self: left;
+            margin-left: 40px;
+          }
+          .name h1 {
+            font-size: 1.7rem;
+          }
+          .name span {
+            font-size: 2rem;
+            margin-top: 0.8rem;
+          }
         }
       `}</style>
     </>

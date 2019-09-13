@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSpring, animated } from "react-spring";
 import useMeasure from "../useMeasure";
 
-const OtherWork = () => {
-  const [on, toggle] = useState(false);
+const OtherWork = ({ toggleWork, workOn }) => {
   const [bind, { height, top }] = useMeasure();
-  console.log("height", height);
   const animation = useSpring({
     overflow: "hidden",
-    height: on ? height + top * 2 : 0
+    height: workOn ? height + top * 2 : 0
   });
 
   return (
     <div>
       <h3>
-        <button onClick={() => toggle(!on)}>Other Work</button>
+        <button onClick={toggleWork}>Other Work</button>
       </h3>
 
       <animated.div style={animation}>

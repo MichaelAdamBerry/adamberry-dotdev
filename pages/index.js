@@ -3,6 +3,7 @@ import Layout from "../components/MyLayout";
 import Nav from "../components/Nav";
 import { useSpring, animated, config } from "react-spring";
 import Title from "../components/Title";
+import MobileNav from "../components/MobileNav";
 
 export default () => {
   const { opacity } = useSpring({
@@ -15,18 +16,18 @@ export default () => {
   });
   return (
     <animated.div style={{ opacity: opacity }}>
-      <Layout>
-        <div className="site-container">
-          <div className="gradient" />
-          <Title name={"Michael Adam Berry"} />
-          <div className="quote-mark">
-            <img alt="large quotation mark" src="../static/quote-marg-lg.svg" />
-          </div>
-          <div className="quote">
-            <p> Make great things and then make them better</p>
-          </div>
-          <Nav current="home" />
-          <div className="content">
+      <Layout bgImg="../static/bg-water-tower.png">
+        <Title name={"Michael Adam Berry"} />
+        <div className="quote-mark">
+          <img alt="large quotation mark" src="../static/quote-marg-lg.svg" />
+        </div>
+        <div className="quote">
+          <p> Make great things and then make them better</p>
+        </div>
+        <Nav current="home" />
+        <MobileNav />
+        <div className="content">
+          <div className="content-container">
             <h2>Freelance</h2>
             <h1>Web Developer</h1>
             <p>I love to think and build interesting things</p>
@@ -41,16 +42,7 @@ export default () => {
           min-height: 100vh;
           max-height: 100vh;
         }
-        .site-container {
-          background-image: url("../static/bg-img-1.png");
-          background-size: cover;
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-          grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-          font-family: "Nunito", sans-serif;
-          font-weight: 200;
-          color: #bfb5b5;
-        }
+
         svg {
           color: var(--main-dark-blue);
         }
@@ -94,9 +86,16 @@ export default () => {
           align-self: center;
         }
 
+        .content-container {
+          padding: 2rem;
+          max-width: 20rem;
+          background-color: #2f2f2f55;
 
-        .content h2 {
-          color: #f6d327;
+        }
+
+
+        .content h2, p {
+          color: var(--blueish);
         }
 
         .content h2 {
@@ -127,7 +126,7 @@ export default () => {
           background: none;
           border: none;
 
-          color: #bfb5b5;
+          color: var(--blueish);
         
           border-bottom: solid;
  
@@ -156,6 +155,7 @@ export default () => {
           color: #de4daa;
           display: block;
           margin-top: 2rem;
+          font-size: 2rem;
         }
         ::-webkit-input-placeholder {
           /* Chrome/Opera/Safari */
@@ -198,6 +198,24 @@ export default () => {
           /* Chrome/Opera/Safari */
           color: blue;
         }
+
+        @media (max-width: 800px) {
+          .site-container {
+            background-position: center;
+          }
+        }
+
+        @media (max-width: 400px) {
+          .quote-mark, .content, .quote {
+            grid-column: 1/6;
+            margin-left: 1rem;
+          }
+          
+  
+        }
+  
+
+
       `}</style>
       </Layout>
     </animated.div>

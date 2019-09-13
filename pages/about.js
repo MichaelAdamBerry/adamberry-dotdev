@@ -1,27 +1,18 @@
-import { useSpring, animated } from "react-spring";
 import Nav from "../components/Nav";
 import Title from "../components/Title";
-import Skills from "../components/about-components/skills";
-import Bio from "../components/about-components/bio";
-import OtherWork from "../components/about-components/other-work";
+import Accordian from "../components/Accordian";
+import MobileNav from "../components/MobileNav";
+import Layout from "../components/MyLayout";
 export default () => {
   return (
-    <>
-      <div className="about-page">
-        <div className="gradient" />
-        <Title name={"About Me"} />
-        <Nav current="about" />
-        <div className="social">
-          <h3>Tweets</h3>
-          <h3>Insta</h3>
-          <h3>blog</h3>
-        </div>
-        <div className="content">
-          <Skills />
-          <Bio />
-          <OtherWork />
-        </div>
-      </div>
+    <Layout
+      bgImg="../static/bg-landscape-bridge.png"
+      bgImgSm="../static/bg-portrait-bridge.png">
+      <Title name={"About Me"} />
+      <Nav current="about" />
+      <MobileNav />
+
+      <Accordian />
 
       <style jsx>{`
         color: white;
@@ -32,85 +23,68 @@ export default () => {
           margin-bottom: 0.5rem;
           color: #f6d327;
         }
-        .gradient {
-          grid-row: 1/6;
-          grid-column: 1/6;
-          background-color: ##101010e6;
-          background-image: linear-gradient(
-            315deg,
-            #350d0bd1 0%,
-            #5f0d34eb 74%
-          );
-          opacity: 0.8;
+
+        p {
+          line-height: 1.75rem;
+          font-size: 1.1rem;
+        }
+
+        p:first-letter {
+          font-size: 1.75rem;
+          color: #f6d327;
         }
 
         .content {
-          grid-row: 2/6;
-          grid-column: 1/5;
-          max-width: 500px;
-          padding-left: 1rem;
+          grid-row: 3/4;
+          grid-column: 1/6;
+
+          align-self: start;
           justify-self: center;
-          
+          margin-top: 50px;
           opacity: 0.99;
-          z-index: 200;
-          max-width: 600px;
+          z-index: 20;
         }
 
-        .content-item {
-          padding: 0.5rem 1rem;
-          background-color: #171414;
-          box-shadow: 20px 20px 60px #a95c7d;
-          border-radius: 5px;
-          border: solid 1px #73133e;
-      }
-        }
-
-        ul {
-          list-style: none;
-          padding: 0;
-          display: flex;
-          flex-wrap: wrap;
-        }
-
-        li :after {
-          content: ", ";
-          padding-right: 1rem;
-          color: black;
-        }
-
-        li:last-of-type:after {
-          content: " ";
-        }
-
-        .social {
-          grid-row: 2/5;
-          grid-column: 4/6;
-          max-width: 500px;
-          justify-self: center;
+        .bio-main {
+          grid-column: 1/2;
+          grid-row: 2/3;
+          max-width: 400px;
           opacity: 0.99;
-          z-index: 200;
+          z-index: 21;
         }
 
-        .social h3 {
-          text-decoration: underline;
+        img {
+          border: solid white;
+          border-radius: 50%;
+          margin: 25px 1rem;
+          float: right;
+          shape-outside: circle(50%);
         }
 
-        .about-page {
-          width: 100%;
-          height: 100%;
-          min-height: 100vh;
+        @media (max-width: 425px) {
+          .social {
+            grid-row: 5/6;
+          }
+          .content {
+            grid-row: 3/4;
+          }
+          p.text {
+            color: #f6d327;
+          }
 
-          background-size: cover;
-          background-image: url("../static/bg-workspace.jpg");
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-          grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-          grid-row-gap: 1rem;
-          grid-column-gap: 1rem;
-          font-family: "Nunito", sans-serif;
-          font-weight: 200;
+          .content {
+            grid-column: 1/6;
+            justify-self: start;
+            margin-left: 1rem;
+            padding-left: 0;
+          }
+
+          .img-container {
+            justify-self: center;
+            align-self: center;
+          }
         }
       `}</style>
-    </>
+    </Layout>
   );
 };

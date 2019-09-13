@@ -7,10 +7,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 library.add(fab);
 
 const Nav = ({ current }) => {
-  const StyledLink = styled.a`
-    color: white;
-  `;
-
   const iconStyles = {
     width: "1em",
     height: "1em"
@@ -18,34 +14,14 @@ const Nav = ({ current }) => {
   return (
     <>
       <div className="nav">
-        <Link href="/" passHref>
-          <StyledLink
-            style={{
-              textDecoration: `${current === "home" ? "underline" : "none"}`,
-              color: `${current === "home" ? "#f6d327" : "white"}`
-            }}>
-            Home
-          </StyledLink>
+        <Link href="/">
+          <a className={current === "home" ? "current" : "static"}>Home</a>
         </Link>
-        <Link href="/about" passHref>
-          <StyledLink
-            style={{
-              textDecoration: `${current === "about" ? "underline" : "none"}`,
-              color: `${current === "about" ? "#f6d327" : "white"}`
-            }}>
-            About
-          </StyledLink>
+        <Link href="/about">
+          <a>About</a>
         </Link>
-        <Link href="/portfolio" passHref>
-          <StyledLink
-            style={{
-              textDecoration: `${
-                current === "portfolio" ? "underline" : "none"
-              }`,
-              color: `${current === "portfolio" ? "#f6d327" : "white"}`
-            }}>
-            Portfolio
-          </StyledLink>
+        <Link href="/portfolio">
+          <a>Portfolio</a>
         </Link>
 
         <div className="item">
@@ -78,9 +54,20 @@ const Nav = ({ current }) => {
           }
 
           a {
-            color: white;
+            color: var(--blueish);
             text-decoration: none;
           }
+
+          .current a {
+            color: #f5d231;
+            text
+          }
+          @media (max-width: 800px) {
+            .nav {
+              display: none;
+            }
+          }
+    
         `}
       </style>
     </>

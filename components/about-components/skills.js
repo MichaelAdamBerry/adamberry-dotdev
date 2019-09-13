@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import useMeasure from "../useMeasure";
 
-const Skills = () => {
+const Skills = ({ skillsOn, toggleSkills }) => {
   const skills = {
     skills: [
       "Advanced Javascript",
@@ -25,18 +25,18 @@ const Skills = () => {
     other: ["Python", "Data Journalism", "Infographics", "Generative Art"]
   };
 
-  const [on, toggle] = useState(false);
+  
   const [bind, { height, top }] = useMeasure();
-  console.log("height", height);
+
   const animation = useSpring({
     overflow: "hidden",
-    height: on ? height + top * 2 : 0
+    height: skillsOn ? height + top * 2 : 0
   });
 
   return (
     <div>
       <h3>
-        <button onClick={() => toggle(!on)}>Toolbox and Skillset</button>
+        <button onClick={toggleSkills}>Toolbox and Skillset</button>
       </h3>
 
       <animated.div style={animation}>

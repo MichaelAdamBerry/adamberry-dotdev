@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSpring, animated } from "react-spring";
 import useMeasure from "../useMeasure";
 
-const Bio = () => {
-  const [on, toggle] = useState(false);
+const Bio = ({ bioOn, toggleBio }) => {
   const [bind, { height, top }] = useMeasure();
-  console.log("height", height);
   const animation = useSpring({
     overflow: "hidden",
-    height: on ? height + top * 2 : 0
+    height: bioOn ? height + top * 2 : 0
   });
 
   return (
     <div>
       <h3>
-        <button onClick={() => toggle(!on)}>Bio</button>
+        <button onClick={toggleBio}>Bio</button>
       </h3>
 
       <animated.div style={animation}>
