@@ -12,7 +12,8 @@ const Frame = props => {
       ref={ref}
       style={{
         overflow: "hidden",
-        height: !ref.current ? "auto" : spring.height
+        height: !ref.current ? "auto" : spring.height,
+        borderLeft: props.isOpen ? "dotted 1px var(--blueish)" : "none"
       }}>
       {props.children}
     </animated.div>

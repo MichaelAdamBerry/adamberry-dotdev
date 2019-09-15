@@ -1,9 +1,39 @@
 import React, { useState } from "react";
 import TechStuff from "./about-components/TechStuff";
 import NonTechStuff from "./about-components/NonTechStuff";
+import ActingStuff from "./about-components/ActingStuff";
 import Social from "./about-components/Social";
+import Production from "./about-components/Production";
 import Tldr from "./about-components/Tldr";
 import Frame from "./about-components/Frame";
+
+const Circle = ({ isOn }) => {
+  return (
+    <>
+      {isOn ? (
+        <img
+          src="/static/minus-sign.svg"
+          alt="minus sign icon to show button toggled open"
+        />
+      ) : (
+        <img
+          src="/static/plus-sign.svg"
+          alt="plus sign icon to show button toggled close"
+        />
+      )}
+      <style jsx>
+        {`
+          img {
+            padding-left: 5px;
+            width: 0.7rem;
+            height: 0.7rem;
+            line-height: 1rem;
+          }
+        `}
+      </style>
+    </>
+  );
+};
 
 const Accordian = () => {
   const [socialOn, toggleSocial] = useState(false);
@@ -42,6 +72,7 @@ const Accordian = () => {
           </button>
         </h3>
         <h3>
+          <Circle isOn={aboutOn} />
           <button
             className={aboutOn && "underline"}
             onClick={() => {
@@ -82,6 +113,7 @@ const Accordian = () => {
         </div>
 
         <h3>
+          <Circle isOn={pastWork} />
           <button
             className={pastWork && "underline"}
             onClick={() => {
@@ -116,7 +148,7 @@ const Accordian = () => {
                   closeContent();
                   toggleCarpentrySection(true);
                 }}>
-                Carpentry
+                Live Event Production
               </button>
             </h4>
           </Frame>
@@ -124,6 +156,7 @@ const Accordian = () => {
 
         <h3>
           <button
+            className={socialOn && "underline"}
             onClick={() => {
               closeContent();
               toggleTldr(false);
@@ -143,8 +176,8 @@ const Accordian = () => {
       </div>
       <div className="rendered-content">
         {tldrOn && <Tldr />}
-        {actingSectionOn && <p>Acting Section</p>}
-        {carpentrySectionOn && <p>carpentrySectionOn</p>}
+        {actingSectionOn && <ActingStuff />}
+        {carpentrySectionOn && <Production />}
         {techStuffOn && <TechStuff />}
         {nonTechStuff && <NonTechStuff />}
         {socialOn && <Social />}
@@ -153,11 +186,10 @@ const Accordian = () => {
       <style jsx>{`
         .menu,
         .rendered-content {
-          grid-row: 2/4;
+          grid-row: 2/6;
           margin-left: 1rem;
           opacity: 0.99;
           z-index: 20;
-          margin-top: 50px;
         }
 
         .menu {
@@ -169,7 +201,6 @@ const Accordian = () => {
           color: white;
           width: 80%;
           justify-self: start;
-
           border-radius: 5px;
         }
 
@@ -183,17 +214,9 @@ const Accordian = () => {
           grid-column: 1/4;
         }
 
-        .underline {
-          border-bottom: solid;
-        }
-
         div.subMenu {
           grid-column: 2/4;
           padding-left: 1rem;
-        }
-
-        h4 {
-          margin-bottom: 0;
         }
 
         button {
@@ -203,10 +226,7 @@ const Accordian = () => {
           color: var(--blueish);
           cursor: pointer;
 
-          padding-left: 0;
-        }
-        button:after {
-          content: " >";
+          padding-left: 0.5rem;
         }
 
         button :focus {
@@ -228,6 +248,10 @@ const Accordian = () => {
 
         li:last-of-type:after {
           content: " ";
+        }
+
+        button.underline {
+          font-weight: 700;
         }
 
         .skills {

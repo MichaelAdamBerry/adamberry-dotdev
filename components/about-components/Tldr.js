@@ -12,6 +12,8 @@ const Tldr = () => {
         </div>
         <div>
           <h3>
+            Hey! I'm Adam.
+            <br />
             I build web applications.
             <br />
             <span className="blue"> Mainly with React.</span>

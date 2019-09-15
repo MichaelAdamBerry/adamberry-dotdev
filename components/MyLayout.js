@@ -29,25 +29,53 @@ export default function Layout({ children, bgImg, bgImgSm }) {
             margin: 0;
           }
           .main {
-            background-color: var(--main-background);
+            height: 100vh;
+          }
+
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          p {
+            margin: 0;
+          }
+
+          a {
+            text-decoration-style: dotted;
+            color: var(--blueish);
+            cursor: pointer;
+          }
+
+          ul {
+            list-style: none;
+          }
+
+          li {
+            padding: 0;
           }
 
           :root {
             --purp: #861657;
             --sunshine: #fff000;
             --blueish: #015463;
+            --pink: #f4bcbf;
+          }
+
+          .blue {
+            color: var(--blueish);
           }
 
           .site-container {
-            min-height: 100vh;
-            max-height: 100vh;
+            height: 100%;
+
             overflow-y: scroll;
             background-image: url(${bgImg});
             background-size: cover;
-            background-position: top;
+            background-position: center bottom;
             display: grid;
             grid-template-columns: 10rem 1fr 1fr 1fr auto;
-            grid-template-rows: 15vh auto auto auto 5vh;
+            grid-template-rows: 15vh 25vh 25vh 25vh 10vh;
             font-family: "Nunito", sans-serif;
             font-weight: 200;
             color: #bfb5b5;

@@ -4,22 +4,16 @@ const TechStuff = () => {
   return (
     <>
       <div className="container">
-        <img src="../static/quote-marg-lg.svg" className="quote-mark" />
-        <div className="quote">
-          <h3>
-            To me programming is more that an important practical art. It is
-            aslo a gigantic undertaking in the foundations of knowledge.
-          </h3>
-        </div>
-        <div className="author">
-          <h5>-Grace Hopper</h5>
-        </div>
-        <h4>
-          Programmatically solving problems creatively,elgantly, and
-          efficiently.
-        </h4>
+        <img src="../static/quote-mark-light.svg" className="quote-mark" />
+
+        <blockquote>
+          To me programming is more that an important practical art. It is aslo
+          a gigantic undertaking in the foundations of knowledge.
+          <h3>-Grace Hopper</h3>
+        </blockquote>
+
         <div className="work-list">
-          <h3>
+          <h3 className="blue">
             Work I <span style={{ color: "red" }}>♥</span> Doing
           </h3>
 
@@ -33,7 +27,7 @@ const TechStuff = () => {
           </ul>
         </div>
         <div className="tool-list">
-          <h3>
+          <h3 className="blue">
             <span style={{ color: "red", fontSize: "larger" }}>🛠</span>'s I use
             to do it
           </h3>
@@ -123,22 +117,14 @@ const TechStuff = () => {
           height: 2.5rem;
         }
         .quote-mark,
-        .quote {
+        blockquote {
           grid-column: 1/6;
-          grid-row: 1/2;
+          grid-row: 5/6;
         }
 
         .work-list {
           grid-column: 1/6;
-          grid-row: 2/3;
-          display: flex;
-          justify-content: space-around;
-        }
-
-        .work-list,
-        .tool-list {
-          padding: 2rem;
-          background-color: #2f2f2f55;
+          grid-row: 1/2;
         }
 
         .work-list h3,
@@ -146,29 +132,30 @@ const TechStuff = () => {
           font-weight: 400;
           font-size: 1.8rem;
           margin-top: 0;
-          color: white;
         }
 
         ul {
           list-style: none;
           padding: 0;
+          background: var(--pink);
+          box-shadow: 0px 0px 10px #2f2f2f55;
+          width: 50%;
+          padding: 1rem;
         }
         .author {
           grid-column: 4/6;
-          grid-row: 1/2;
+          grid-row: 5/6;
           align-self: end;
           color: var(--purp);
         }
 
-        .quote {
-          color: white;
+        blockquote {
+          color: var(--purp);
         }
 
         .tool-list {
           grid-column: 1/6;
-          grid-row: 3/4;
-          display: flex;
-          justify-content: space-around;
+          grid-row: 4/5;
         }
 
         .tool-list ul {
@@ -178,10 +165,6 @@ const TechStuff = () => {
 
         .tool-list h3,
         .work-list h3 {
-          width: 50%;
-        }
-
-        .tool-list ul {
           width: 50%;
         }
 

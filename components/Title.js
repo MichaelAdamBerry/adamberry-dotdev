@@ -18,7 +18,7 @@ const Title = ({ name }) => {
         <animated.h1
           style={{
             display: "flex",
-            margin: "1rem 0",
+            margin: "0",
             boxShadow: `5px, 5px 10px black`,
             transform: xyz.interpolate(
               (x, y, z) => `translate3d(${x}rem, ${y}rem, ${z}px )`
@@ -41,16 +41,12 @@ const Title = ({ name }) => {
         }
 
         .name h1 {
-          margin-top: 1rem;
           font-family: "Nunito", sans-serif;
         }
 
         .name span {
           font-size: 3rem;
           margin: 0;
-        }
-
-        .name span {
           color: var(--blueish);
         }
 

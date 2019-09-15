@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const mailer = require("./server/mailer/mailer.js");
-
+const mailer = require("./server/mailer/mailer-sendgrid.js");
+const sendGrid = require("./server/posts-sendgrid");
 app
   .prepare()
   .then(() => {

@@ -107,9 +107,15 @@ const ContactCard = () => {
           width: 5rem;
         }
 
+        input:focus {
+          outline: none;
+        }
+
         button {
-          width: 10rem;
+          width: 12rem;
           height: 2.5rem;
+          font-size: 1.3rem;
+          line-height: 1.3rem;
           border-radius: 18px;
           color: #de4daa;
           display: block;

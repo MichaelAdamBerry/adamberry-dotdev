@@ -16,10 +16,15 @@ export default () => {
   });
   return (
     <animated.div style={{ opacity: opacity }}>
-      <Layout bgImg="../static/bg-water-tower.png">
+      <Layout
+        bgImg="../static/bg-water-tower.png"
+        bgImgSm="../static/bg-water-tower-sm.png">
         <Title name={"Michael Adam Berry"} />
         <div className="quote-mark">
-          <img alt="large quotation mark" src="../static/quote-marg-lg.svg" />
+          <img
+            alt="large quotation mark"
+            src="../static/quote-mark-light.svg"
+          />
         </div>
         <div className="quote">
           <p> Make great things and then make them better</p>
@@ -30,7 +35,7 @@ export default () => {
           <div className="content-container">
             <h2>Freelance</h2>
             <h1>Web Developer</h1>
-            <p>I love to think and build interesting things</p>
+            <p>Let's Make Something Unforgettable</p>
             <ContactCard />
           </div>
         </div>
@@ -65,7 +70,7 @@ export default () => {
 
 
         .quote, .quote-mark {
-          grid-column: 4/6;
+          grid-column: 2/5;
           grid-row: 5/6;
           justify-self: start;
           align-self: center;
