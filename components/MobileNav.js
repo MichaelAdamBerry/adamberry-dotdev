@@ -100,12 +100,18 @@ const MobileNav = () => {
             button {
               font-size: 1.5rem;
               cursor: pointer;
-              width: 1.5rem;
-              height: 1.5rem;
+              
+            
               background: none;
               border: none;
               color: white;
-              
+            }
+
+            h2 {
+              margin: 0;
+              width: 3rem;
+              font-size: 2.5rem;
+              line-height: 2rem
             }
 
             button:focus {

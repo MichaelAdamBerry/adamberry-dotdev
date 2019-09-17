@@ -142,5 +142,17 @@ export const Card = styled.div`
 
   @media (max-width: 425px) {
     margin-top: 3rem;
+    padding: 0.5rem;
+
+    li {
+      font-size: smaller;
+    }
+    img {
+      width: 125px;
+    }
+
+    .right {
+      padding-left: 0.5rem;
+    }
   }
 `;

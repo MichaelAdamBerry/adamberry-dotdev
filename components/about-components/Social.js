@@ -6,22 +6,22 @@ const Social = () => {
       <div className="social">
         <div>
           <a href="https://twitter.com/_Adam_Berry">
-            <button className="twitter">Follow</button>
+            <button className="twitter">Tweets</button>
           </a>
         </div>
         <div>
           <a href="https://www.instagram.com/michael_adam_berry/">
-            <button className="instagram">Follow</button>
+            <button className="instagram">Pics</button>
           </a>
         </div>{" "}
         <div>
           <a href="">
-            <button className="linkedin">Follow</button>
+            <button className="linkedin">Career</button>
           </a>
         </div>
         <div>
           <a href="https://github.com/MichaelAdamBerry">
-            <button className="github">Follow</button>
+            <button className="github">Code</button>
           </a>
         </div>
       </div>
@@ -73,6 +73,23 @@ const Social = () => {
 
         .github {
             background-color: black;
+        }
+
+        @media(max-width: 425px) {
+
+          .social {
+            display: block;
+          }
+
+          button, .social div {
+            width: 8rem;
+          }
+
+          .social div {
+            
+    margin: auto;
+    margin-bottom: 2rem;
+          }
         }
       `}</style>
     </>

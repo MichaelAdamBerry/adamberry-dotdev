@@ -68,7 +68,6 @@ export default function Layout({ children, bgImg, bgImgSm }) {
 
           .site-container {
             height: 100%;
-
             overflow-y: scroll;
             overflow-x: hidden;
             background-image: url(${bgImg});

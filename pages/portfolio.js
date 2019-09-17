@@ -5,6 +5,78 @@ import { useSpring, animated } from "react-spring";
 import Nav from "../components/Nav";
 import Title from "../components/Title";
 import MobileNav from "../components/MobileNav";
+import styled from "@emotion/styled";
+
+const FixedVideo = styled.div`
+  position: fixed;
+  top: 100px;
+  left: 5%;
+  width: 100vw;
+  height: calc(100vh - 100px);
+
+  button:focus {
+    outline: none;
+  }
+
+  h2 {
+    text-align: center;
+  }
+  p {
+    color: white;
+    max-width: 650px;
+    margin: auto;
+    padding: 0.5rem;
+  }
+
+  video {
+    width: 90vw;
+    height: auto;
+    margin: auto;
+  }
+
+  .close-container {
+    position: fixed;
+    top: 100px;
+    right: 50px;
+    background-color: white;
+    border-radius: 50%;
+    width: 50px;
+    min-height: 50px;
+    z-index: 103;
+    cursor: pointer;
+    opacity: 0.99;
+  }
+
+  .close-container img {
+    margin-top: 0.3rem;
+    z-index: 102;
+    opacity: 0.99;
+  }
+  @media (max-width: 425px) {
+    top: 75px;
+    height: calc(100vh - 75px);
+
+    .close-container {
+      top: 75px;
+      width: 30px;
+      min-height: unset;
+      height: 30px;
+    }
+
+    p {
+      max-width: unset;
+    }
+
+    h2 {
+      text-align: left;
+    }
+
+    video {
+      max-width: 90vw;
+    }
+  }
+`;
+
 const projects = [
   {
     title: "SampleProject",
@@ -64,95 +136,28 @@ const Video = ({ isOpen, setVideoOpen, src, description, title }) => {
         style={{
           opacity: x.interpolate(x => x),
           transform: x.interpolate(x => `scale(${x})`),
-
           justifySelf: "center",
           alignSelf: "center",
           zIndex: "100",
-
           borderRadius: "3%",
           boxShadow: "3rem 3rem 15rem #bb9d9d77",
-          pointerEvents: "none",
           maxWidth: "100vw"
         }}>
-        <div className="description-container">
+        <FixedVideo>
+          {isOpen && (
+            <button
+              className="close-container"
+              onClick={() => setVideoOpen(false)}>
+              <img alt="close btn" src="static/close-btn.svg" />
+            </button>
+          )}
           <h2>{title}</h2>
           <p>{description}</p>
-        </div>
-        <video autoPlay loop muted playsInline key={src}>
-          <source src={src} type="video/mp4" />
-        </video>
+          <video autoPlay loop muted playsInline key={src}>
+            <source src={src} type="video/mp4" />
+          </video>
+        </FixedVideo>
       </animated.div>
-      <div
-        style={{ display: `${isOpen ? "block" : "none"}` }}
-        className="close-container"
-        onClick={() => setVideoOpen(false)}>
-        <button>
-          <img alt="close btn" src="static/close-btn.svg" />
-        </button>
-      </div>
-      <style jsx>
-        {`
-          .overlay {
-            grid-row: 1/6;
-            grid-column: 1/6;
-            width: 100%;
-            background-color: black;
-            opacity: 0.3;
-            z-index: 98;
-          }
-
-          .description-container {
-            color: white;
-            max-width: 650px;
-            margin: auto;
-            padding: 0.5rem;
-          }
-
-          .description-container h2 {
-            text-align: center;
-          }
-
-          .close-container {
-            position: fixed;
-            top: 40px;
-            right: 50px;
-
-            background-color: white;
-            border-radius: 50%;
-            width: 50px;
-            min-height: 50px;
-            z-index: 100;
-          }
-
-          .close-container button {
-            z-index: 101;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-          }
-
-          .close-container img {
-            margin-top: 0.3rem;
-            z-index: 102;
-            opacity: 0.99;
-          }
-
-          video {
-            max-width: 90vw;
-            height: auto;
-            margin: auto;
-          }
-          @media (max-width: 425px) {
-            .description-container {
-              max-width: unset;
-            }
-
-            video {
-              max-width: 90vw;
-            }
-          }
-        `}
-      </style>
     </>
   );
 };
@@ -162,7 +167,6 @@ const Portfolio = () => {
   const [videoIsOpen, setVideoOpen] = useState(false);
   const [description, setDescription] = useState();
   const [title, setTitle] = useState();
-  const [href, setHref] = useState();
 
   const loadVideo = project => {
     const { mp4, description, title } = project;
@@ -178,31 +182,27 @@ const Portfolio = () => {
       <MobileNav />
       <Title name="Work Examples" />
 
-      <div className="project card-1" onClick={() => loadVideo(projects[3])}>
+      <div className="card-1" onClick={() => loadVideo(projects[3])}>
         <ProjectCard cardObj={projects[3]} />
       </div>
-      <div className="project card-2" onClick={() => loadVideo(projects[2])}>
+      <div className="card-2" onClick={() => loadVideo(projects[2])}>
         <ProjectCard cardObj={projects[2]} />
       </div>
-      <div className="project card-3" onClick={() => loadVideo(projects[1])}>
+      <div className="card-3" onClick={() => loadVideo(projects[1])}>
         <ProjectCard cardObj={projects[1]} />
       </div>
-
-      <div className="project card-4" onClick={() => loadVideo(projects[4])}>
+      <div className="card-4" onClick={() => loadVideo(projects[4])}>
         <ProjectCard cardObj={{ ...projects[4], col: 1 }} />
       </div>
 
       <div
-        className="modalOverlay"
         style={{
+          display: `${!videoIsOpen ? "none" : "block"}`,
           gridColumn: "1/6",
           gridRow: "1/6",
           backgroundColor: "black",
-          opacity: `${videoIsOpen ? ".85" : ".0"}`,
-          pointerEvents: "none"
-        }}
-      />
-      <div className="video-container">
+          opacity: `${videoIsOpen ? ".95" : ".0"}`
+        }}>
         <Video
           isOpen={videoIsOpen}
           src={mp4Src}
@@ -214,21 +214,13 @@ const Portfolio = () => {
 
       <style jsx>{`
 
-
-          .project {
-            width: 275px;
-            background-color: #2f2f2f85;
-            box-shadow: 10px 10px 20px #2f2f2f85;
-            cursor: pointer;
-            justify-self: center;
-            align-self: center;
-          }
-
           .card-1 {
             grid-row: 2/3;
             grid-column: 1/3;
             justify-self: center;
             align-self: center;
+            margin-bottom: 1rem;
+
           }
 
           .card-2 {
@@ -236,6 +228,7 @@ const Portfolio = () => {
             grid-column: 1/3;
             justify-self: center;
             align-self: center;
+            margin-bottom: 1rem;
           }
 
           .card-3 {
@@ -243,6 +236,7 @@ const Portfolio = () => {
             grid-column: 4/6;
             justify-self: center;
             align-self: center;
+            margin-bottom: 1rem;
           }
 
           .card-4 {
@@ -254,32 +248,25 @@ const Portfolio = () => {
         
 
 
-          .video-container {
-            grid-row: 2/5;
-            grid-column: 1/6;
-            justify-self: center;
-          }
+
 
           @media (max-width: 425px) {
 
 
             .card-1 {
-             
               grid-row: 2/3;
               grid-column: 1/6;
               jusify-self: center;
               align-self: center;
               }
 
-            .card-2 {
-               
+            .card-2 {              
               grid-row: 3/4;
               grid-column: 1/6;
               align-self: center;
             }
 
-            .card-3 {
-           
+            .card-3 {          
               grid-row: 4/5;
               grid-column: 1/6;
               align-self: center;
@@ -291,31 +278,13 @@ const Portfolio = () => {
               jusify-self: center;
               align-self: center;
             }
-            .project {
-              margin: 3rem 0;
-              width:90%;
-              box-shadow: none;
-              background-color:unset;
-              align-self: center;
-          }
+   
 
  
 
-          .video-container {
-            grid-row: 2/6;
-            grid-column: 1/6;
-           align-items: center;
-           max-width: 95vw;
-           justify-self: center;
-          }
-          .site-container {
-          grid-template-columns:   auto 25% 25% 25% auto;
-          grid-column-gap: 3.5;
-          }
 
-          .text, 
-            display: none;
-          }
+    
+=
         }
         `}</style>
     </Layout>

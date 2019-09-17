@@ -25,7 +25,9 @@ const Tldr = () => {
         </div>
       </Card>
       <style jsx>{`
-
+        li {
+          font-size : smaller;
+        }
         img {
           width: 150px;
           height: auto;
