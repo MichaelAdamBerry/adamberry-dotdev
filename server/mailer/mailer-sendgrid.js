@@ -5,13 +5,13 @@ let API_KEY =
 
 sgMail.setApiKey(API_KEY);
 
-const send = (emailAddress, summary) => {
+const send = (email, message) => {
   const msg = {
     to: "michaeladamberry3@gmail.com",
-    from: emailAddress,
+    from: email,
     subject: "SENDGRID - New Email from Website",
-    text: summary,
-    html: `<p>${summary}</p>`
+    text: message,
+    html: `<p>${message}</p>`
   };
 
   return new Promise((resolve, reject) => {

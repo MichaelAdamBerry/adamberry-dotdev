@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TechStuff from "./about-components/TechStuff";
 import NonTechStuff from "./about-components/NonTechStuff";
 import ActingStuff from "./about-components/ActingStuff";
@@ -36,6 +36,7 @@ const Circle = ({ isOn }) => {
 };
 
 const Accordian = () => {
+  const [windowWidth, setWindowWidth] = useState(800);
   const [socialOn, toggleSocial] = useState(false);
   const [pastWork, togglePastWork] = useState(false);
   const [tldrOn, toggleTldr] = useState(true);
@@ -46,6 +47,12 @@ const Accordian = () => {
   const [nonTechStuff, toggleNonTechStuff] = useState(false);
   const [actingSectionOn, toggleActingSection] = useState(false);
   const [carpentrySectionOn, toggleCarpentrySection] = useState(false);
+
+  useEffect(() => {
+    if (typeof window != undefined) {
+      setWindowWidth(window.innerWidth);
+    }
+  }, []);
 
   const closeContent = () => {
     toggleTechStuff(false);
@@ -96,7 +103,7 @@ const Accordian = () => {
                   closeContent();
                   toggleTechStuff(true);
                 }}>
-                Tech Stuff
+                Web Dev
               </button>
             </h4>
             <h4>
@@ -106,7 +113,7 @@ const Accordian = () => {
                   closeContent();
                   toggleNonTechStuff(true);
                 }}>
-                Non Tech Stuff
+                Life
               </button>
             </h4>
           </Frame>
@@ -124,7 +131,7 @@ const Accordian = () => {
               togglePastWork(!pastWork);
               toggleAbout(false);
             }}>
-            Past Work
+            Previous
           </button>
         </h3>
 
@@ -148,7 +155,7 @@ const Accordian = () => {
                   closeContent();
                   toggleCarpentrySection(true);
                 }}>
-                Live Event Production
+                Production
               </button>
             </h4>
           </Frame>
@@ -165,7 +172,7 @@ const Accordian = () => {
               toggleSocial(!socialOn);
               toggleAbout(false);
             }}>
-            The Social Medias
+            Follow Me
           </button>
         </h3>
         <div className="subMenu">
@@ -175,7 +182,7 @@ const Accordian = () => {
         </div>
       </div>
       <div className="rendered-content">
-        {tldrOn && <Tldr />}
+        {windowWidth > 500 ? <Tldr /> : tldrOn && <Tldr />}
         {actingSectionOn && <ActingStuff />}
         {carpentrySectionOn && <Production />}
         {techStuffOn && <TechStuff />}
@@ -256,6 +263,31 @@ const Accordian = () => {
 
         .skills {
           display: flex;
+        }
+
+        @media (max-width: 800px) {
+          .menu {
+            grid-column: 1/3;
+            margin-left: 40px;
+          }
+
+          .rendered-content {
+            width: 94%;
+            margin: auto;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .menu {
+            padding: 1rem 10px;
+            grid-row: 2/3;
+            grid-column: 1/5;
+            margin-left: 30px;
+          }
+          .rendered-content {
+            grid-column: 1/6;
+            grid-row: 3/6;
+          }
         }
       `}</style>
     </>

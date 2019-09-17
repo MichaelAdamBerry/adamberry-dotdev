@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ContactCardFormik from "./ContactCardFormik";
 import "isomorphic-fetch";
 
 const ContactCard = () => {
@@ -19,7 +20,7 @@ const ContactCard = () => {
     validateForm();
   };
 
-  const onSubmit = async e => {
+  const onSubmit = async values => {
     if (formValid) {
       setLoadingState("loading");
       console.log("email and summary are", emailAddress, summary, loadingState);

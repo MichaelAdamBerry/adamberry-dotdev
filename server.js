@@ -16,12 +16,12 @@ app
     });
 
     server.post("/api/contact", (req, res) => {
-      const { emailAddress, summary } = req.body;
+      const { email, message } = req.body;
       console.log(req.body);
       mailer
-        .send(emailAddress, summary)
+        .send(email, message)
         .then(() => {
-          console.log(`sent the message from ${emailAddress}`);
+          console.log(`sent the message from ${email}`);
           res.status(200);
         })
         .catch(error => {

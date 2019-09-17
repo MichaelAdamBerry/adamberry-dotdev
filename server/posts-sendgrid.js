@@ -5,10 +5,10 @@ const mailer = require("./mailer/mailer-sendgrid.js");
 app.use(bodyParser.json());
 
 app.post("*", (req, res) => {
-  const { emailAddress, summary } = req.body;
+  const { email, message } = req.body;
 
   mailer
-    .send(emailAddress, summary)
+    .send(email, message)
     .then(() => {
       console.log(
         `Sent the message "${messageText}" from <${firstName}> ${emailAddress}.`

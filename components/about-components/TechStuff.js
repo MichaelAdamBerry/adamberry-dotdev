@@ -1,180 +1,99 @@
 import React from "react";
+import { Card } from "./Card";
 
 const TechStuff = () => {
   return (
-    <>
-      <div className="container">
-        <img src="../static/quote-mark-light.svg" className="quote-mark" />
+    <section>
+      <h2
+        style={{
+          color: "var(--blueish)",
+          margin: "1rem 0",
+          padding: "1rem 0",
+          borderTop: "solid"
+        }}>
+        Technically Speaking...{" "}
+      </h2>
 
-        <blockquote>
-          To me programming is more that an important practical art. It is aslo
-          a gigantic undertaking in the foundations of knowledge.
-          <h3>-Grace Hopper</h3>
-        </blockquote>
-
-        <div className="work-list">
-          <h3 className="blue">
-            Work I <span style={{ color: "red" }}>♥</span> Doing
-          </h3>
-
+      <h3
+        style={{
+          color: "var(--blueish)",
+          margin: "2rem 0",
+          borderBottom: "solid"
+        }}>
+        Skills, Experience, and the Tools I Love
+      </h3>
+      <Card>
+        <div className="left">
+          <img src="../static/logo-react.svg" alt="React Logo" title="React" />
+        </div>
+        <div className="right">
+          <h3>front end development</h3>
           <ul>
-            <li>Front End Development</li>
-            <li>E-Commerce Stores</li>
-            <li>User Interface Development</li>
-            <li>JAM Stack Development</li>
-            <li>Data Visualization & Informatic Development</li>
-            <li>Data Journalism</li>
+            <li>Semantic and Accessible HTML</li>
+            <li>Responsive CSS Layouts</li>
+            <li>Vanilla Javascript</li>
+            <li>JQuery</li>
+            <li>React</li>
           </ul>
         </div>
-        <div className="tool-list">
-          <h3 className="blue">
-            <span style={{ color: "red", fontSize: "larger" }}>🛠</span>'s I use
-            to do it
-          </h3>
+
+        <div className="footer">
+          <a href="https://twitter.com/snoopdogg/status/306540425152442368?lang=en">
+            <img src="../static/snoop-tweet.png" />
+          </a>
+        </div>
+      </Card>
+      <Card>
+        <div className="left">
+          <img src="../static/logo-gatsby.svg" alt="Gatsby" title="Gatsby" />
+        </div>
+        <div className="right">
+          <h3>jam stack developemnt</h3>
+          <h4>javascript. apis. markup</h4>
           <ul>
-            <li>
-              <div className="logo">
-                <img src="../static/logo-html.svg" alt="HTML5" title="HTML 5" />
-              </div>
-            </li>
-            <li>
-              <div className="logo">
-                <img
-                  src="../static/logo-javascript.svg"
-                  alt="JavaScript"
-                  title="JavaScript"
-                />
-              </div>
-            </li>
-            <div className="logo">
-              <img src="../static/logo-css.svg" alt="CSS3" title="CSS" />
-            </div>
-            <div className="logo">
-              <img src="../static/logo-react.svg" alt="React" title="React" />
-            </div>
-
-            <div className="logo">
-              <img
-                src="../static/logo-gatsby.svg"
-                alt="Gatsby"
-                title="Gatsby"
-              />
-            </div>
-
-            <div className="logo">
-              <img src="../static/logo-next.svg" alt="Next" title="Next.js" />
-            </div>
-
-            <div className="logo">
-              <img src="../static/logo-d3.svg" alt="D3.js" title="D3" />
-            </div>
-
-            <div className="logo">
-              <img
-                src="../static/logo-node.svg"
-                alt="Node.js"
-                title="Node.js"
-              />
-            </div>
-
-            <div className="logo">
-              <img
-                src="../static/logo-shopify.svg"
-                alt="Shopify"
-                title="Shopify"
-              />
-            </div>
-
-            <div className="logo">
-              <img
-                src="../static/logo-stripe.svg"
-                alt="Stripe"
-                title="Stripe"
-              />
-            </div>
+            <li>Static Site Generators</li>
+            <li>Headless CMS</li>
+            <li>Gatsby.js</li>
+            <li>Next.js</li>
+            <li>Serverless Functions</li>
           </ul>
         </div>
-      </div>
-      <style jsx>{`
-        .container {
-          color: var(--blueish);
-          display: grid;
-          grid-template-columns: 1fr 1fr 1fr 1fr;
-          grid-template-rows: auto auto auto auto auto;
-          grid-row-gap: 2rem;
-        }
-
-        h3 {
-          margin: 0.3rem 0;
-        }
-
-        h5 {
-          margin: 0;
-        }
-
-        img {
-          width: 2.5rem;
-          height: 2.5rem;
-        }
-        .quote-mark,
-        blockquote {
-          grid-column: 1/6;
-          grid-row: 5/6;
-        }
-
-        .work-list {
-          grid-column: 1/6;
-          grid-row: 1/2;
-        }
-
-        .work-list h3,
-        .tool-list h3 {
-          font-weight: 400;
-          font-size: 1.8rem;
-          margin-top: 0;
-        }
-
-        ul {
-          list-style: none;
-          padding: 0;
-          background: var(--pink);
-          box-shadow: 0px 0px 10px #2f2f2f55;
-          width: 50%;
-          padding: 1rem;
-        }
-        .author {
-          grid-column: 4/6;
-          grid-row: 5/6;
-          align-self: end;
-          color: var(--purp);
-        }
-
-        blockquote {
-          color: var(--purp);
-        }
-
-        .tool-list {
-          grid-column: 1/6;
-          grid-row: 4/5;
-        }
-
-        .tool-list ul {
-          display: flex;
-          flex-wrap: wrap;
-        }
-
-        .tool-list h3,
-        .work-list h3 {
-          width: 50%;
-        }
-
-        .logo {
-          width: 3rem;
-          height: auto;
-          padding: 0.5rem;
-        }
-      `}</style>
-    </>
+        <div className="footer">
+          <a href="https://twitter.com/codebeast/status/1133927268697305091?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E1133927268697305091&ref_url=https%3A%2F%2Fblog.logrocket.com%2Fwhy-you-should-be-using-jamstack%2F">
+            <img
+              src="../static/jam-stack-tweet.png"
+              alt="tweet from Christian Nwumba"
+            />
+          </a>
+        </div>
+      </Card>
+      <Card>
+        <div className="left">
+          <img
+            src="../static/logo-shopify.svg"
+            alt="Shopify's signature shopping bag animation"
+          />
+        </div>
+        <div className="right">
+          <h3>e-commerce</h3>
+          <li>Shopify</li>
+          <li>Stripe</li>
+        </div>
+      </Card>
+      <Card>
+        <div className="left">
+          <img src="../static/logo-d3.svg" alt="D3.js logo" />
+        </div>
+        <div className="right">
+          <h3>Data Visualizations</h3>
+          <ul>
+            <li>D3.js</li>
+            <li>Observable Note Book</li>
+            <li>Vega Lite</li>
+          </ul>
+        </div>
+      </Card>
+    </section>
   );
 };
 

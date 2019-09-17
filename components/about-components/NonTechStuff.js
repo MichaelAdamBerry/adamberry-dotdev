@@ -1,40 +1,38 @@
 import React from "react";
 import PhotoGrid from "./PhotoGrid";
+import { Card, FlexList } from "./Card";
 const NonTechStuff = () => {
   const data = [
+    { css: "/static/wedding-1.png", height: 250 },
     { css: "/static/bones.png", height: 400 },
-    { css: "/static/indian-lights.png", height: 300 },
-    { css: "/static/wedding-1.png", height: 400 },
     { css: "/static/red.png", height: 400 },
-    { css: "/static/marathon.png", height: 300 },
-    { css: "/static/tetons.png", height: 400 },
-    { css: "/static/dancin.png", height: 300 },
-    { css: "/static/adam-emily-1.png", height: 300 }
+    { css: "/static/marathon.png", height: 270 },
+    { css: "/static/tetons.png", height: 350 },
+    { css: "/static/dancin.png", height: 270 },
+    { css: "/static/adam-emily-1.png", height: 270 },
+    { css: "/static/indian-lights.png", height: 300 }
   ];
 
   return (
-    <>
-      <h2>Real Life</h2>
-      <p>
-        Aside from coding - I enjoy running, hiking, being unsucessful at
-        curbing my twitter addiction, and most importanty spending time with my
-        wife and our two children who happen to be dogs.
-      </p>
-      <PhotoGrid data={data} />
+    <section>
+      <Card>
+        <FlexList>
+          <h3>passions & hobbies</h3>
+          <ul>
+            <li>👫 Fam</li>
+            <li>👟 Running</li>
+            <li>🥾 Hiking</li>
+            <li>🍷 Fine Wines</li>
+            <li>🍕 Fine Foods</li>
+            <li>🐶 Fine Pups</li>
+          </ul>
+        </FlexList>
 
-      <style jsx>{`
-        h2 {
-          color: var(--purp);
-        }
-        p {
-          color: var(--blueish);
-        }
-        .posts-container {
-          display: flex;
-          flex-wrap: wrap;
-        }
-      `}</style>
-    </>
+        <div className="footer">
+          <PhotoGrid data={data} />
+        </div>
+      </Card>
+    </section>
   );
 };
 

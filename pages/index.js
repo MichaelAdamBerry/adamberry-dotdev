@@ -1,4 +1,6 @@
-import ContactCard from "../components/ContactCard";
+import React, { useState } from "react";
+import ContactCardFormik from "../components/ContactCardFormik";
+
 import Layout from "../components/MyLayout";
 import Nav from "../components/Nav";
 import { useSpring, animated, config } from "react-spring";
@@ -6,6 +8,24 @@ import Title from "../components/Title";
 import MobileNav from "../components/MobileNav";
 
 export default () => {
+  const [loadingState, setLoadingState] = useState("");
+
+  const sendOnSubmit = async values => {
+    const data = await JSON.stringify(values);
+    fetch("./api/contact", {
+      method: "post",
+      headers: {
+        Accept: "application/json, text/plain */*",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then(res => {
+      res.status === 200
+        ? setLoadingState("submitted")
+        : setLoadingState("error");
+    });
+  };
+
   const { opacity } = useSpring({
     from: {
       opacity: 0
@@ -33,20 +53,15 @@ export default () => {
         <MobileNav />
         <div className="content">
           <div className="content-container">
-            <h2>Freelance</h2>
-            <h1>Web Developer</h1>
-            <p>Let's Make Something Unforgettable</p>
-            <ContactCard />
+            <h1>fullstack web developer</h1>
+
+            <p>let's collaborate!</p>
+            <ContactCardFormik />
           </div>
         </div>
 
         <style jsx>{`
-        html, body, .site-container {
-          width: 100%;
-          height: 100%;
-          min-height: 100vh;
-          max-height: 100vh;
-        }
+
 
         svg {
           color: var(--main-dark-blue);
@@ -55,19 +70,6 @@ export default () => {
             width: 1rem;
             height; 1rem;
         }
-
-        .gradient {
-          grid-row: 1 / 6;
-          grid-column: 1/6;
-          background-color: #d1959233;
-          background-image: linear-gradient(
-            315deg,
-            #d1959290 0%,
-            #c81f7090 74%
-          );
-        }
-
-
 
         .quote, .quote-mark {
           grid-column: 2/5;
@@ -98,27 +100,21 @@ export default () => {
 
         }
 
-
-        .content h2, p {
-          color: var(--blueish);
-        }
-
-        .content h2 {
-          font-weight: 200;
-          font-size: 2rem;
-          margin-top: 0;
-          margin-bottom: 0.5rem;
-        }
-
         .content h1 {
-          font-weight: 400;
+          font-weight: 700;
           font-size: 1.8rem;
           margin-top: 0;
-          color: white;
+          color: var(--purp);
         }
         .content p {
           font-size: 1.5rem;
           width: 20rem;
+          color: var(--purp);
+        }
+
+        .content p, .content h1, .content h2 {
+          line-height: 2rem;
+          margin: 1rem 0;
         }
 
  
@@ -127,82 +123,8 @@ export default () => {
           margin: 1rem 0;
         }
 
-        input {
-          background: none;
-          border: none;
 
-          color: var(--blueish);
-        
-          border-bottom: solid;
- 
-          font-size: 1rem;
-  
 
-        }
-
-        input:nth-child(1) {
-            width: 20rem;
-            display: block;
-        }
-
-        input:nth-child(2) {
-          margin-right: 1rem;
-          width: 14rem;
-        }
-        input:nth-child(3) {
-          width: 5rem;
-        }
-
-        button {
-          width: 10rem;
-          height: 2.5rem;
-          border-radius: 18px;
-          color: #de4daa;
-          display: block;
-          margin-top: 2rem;
-          font-size: 2rem;
-        }
-        ::-webkit-input-placeholder {
-          /* Chrome/Opera/Safari */
-          color: #bfb5b5;
-        }
-        ::-moz-placeholder {
-          /* Firefox 19+ */
-          color: #bfb5b5;
-        }
-        :-ms-input-placeholder {
-          /* IE 10+ */
-          color: #bfb5b5;
-        }
-        :-moz-placeholder {
-          /* Firefox 18- */
-          color: #bfb5b5;
-        }
-
-        .custom-file-input::-webkit-file-upload-button {
-          visibility: hidden;
-        }
-        .custom-file-input::after {
-          content: 'File 📎';
-          display: inline-block;
-          background: linear-gradient(top, #f9f9f9, #e3e3e3);
-          outline: none;
-          white-space: nowrap;
-          -webkit-user-select: none;
-          cursor: pointer;
-
-        }
-        .custom-file-input:hover::before {
-          border-color: black;
-        }
-        .custom-file-input:active::before {
-          background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-        }
-
-      .custom-file-input ::-webkit-input-placeholder {
-          /* Chrome/Opera/Safari */
-          color: blue;
-        }
 
         @media (max-width: 800px) {
           .site-container {
@@ -210,10 +132,17 @@ export default () => {
           }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 425px) {
           .quote-mark, .content, .quote {
             grid-column: 1/6;
-            margin-left: 1rem;
+          }
+
+          .content-container {
+            max-width: unset;
+          }
+
+          .content div {
+            margin : 0;
           }
           
   

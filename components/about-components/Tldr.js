@@ -1,59 +1,37 @@
 import React from "react";
+import { Card } from "./Card";
 
 const Tldr = () => {
   return (
     <>
-      <div className="container">
-        <div className="bio-main">
-          <img
-            alt="black and white photo of Micheal Adam Berry"
-            src="../static/avatar.jpeg"
-          />
+      <Card>
+        <img
+          className="left"
+          alt="black and white headshot of Micheal Adam Berry"
+          src="../static/avatar.jpeg"
+        />
+
+        <div className="right">
+          <h3>tldr;</h3>
+          <ul>
+            <li>📚 Lifelong learner of new things</li>
+            <li>🎨 Inventor of creative solutions</li>
+            <li>🖥 Maker of web applications</li>
+            <li>🙌🏼 Advocate for an open and inclusive internet</li>
+          </ul>
         </div>
-        <div>
-          <h3>
-            Hey! I'm Adam.
-            <br />
-            I build web applications.
-            <br />
-            <span className="blue"> Mainly with React.</span>
-            <br />
-            Big internet fan.{" "}
-          </h3>
+        <div className="footer">
+          <p>📍 Brooklyn, NY</p>
         </div>
-      </div>
+      </Card>
       <style jsx>{`
-        .container {
-          display: flex;
-          justify-content: space-between;
-          padding: 10px;
-          max-width: 700px;
-        }
-
-        .bio-main {
-          max-width: 400px;
-          opacity: 0.99;
-          z-index: 21;
-        }
-
-        h3 {
-          color: var(--purp);
-          font-size: 32px;
-          margin: 0;
-          margin-left: 2rem;
-        }
-
-        .blue {
-           color: var(--blueish);
-        }
 
         img {
+          width: 150px;
+          height: auto;
           border: solid var(--blueish);
-          border-radius: 50%;
+          box-shadow: 0px 0px 20px #2f2f2f22
           margin: 0
-          
-
-          shape-outside: circle(50%);
         }
       `}</style>
     </>

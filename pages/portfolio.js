@@ -177,23 +177,19 @@ const Portfolio = () => {
       <Nav current="portfolio" />
       <MobileNav />
       <Title name="Work Examples" />
-      <div className="projects-container">
-        <div className="project card-1" onClick={() => loadVideo(projects[3])}>
-          <ProjectCard cardObj={projects[3]} />
-        </div>
-        <div className="project card-2" onClick={() => loadVideo(projects[2])}>
-          <ProjectCard cardObj={projects[2]} />
-        </div>
-        <div className="project card-3" onClick={() => loadVideo(projects[1])}>
-          <ProjectCard cardObj={projects[1]} />
-        </div>
 
-        <div className="project card-4" onClick={() => loadVideo(projects[4])}>
-          <ProjectCard cardObj={{ ...projects[4], col: 1 }} />
-        </div>
-        <div className="project card-5">
-          <ProjectCard cardObj={projects[0]} />
-        </div>
+      <div className="project card-1" onClick={() => loadVideo(projects[3])}>
+        <ProjectCard cardObj={projects[3]} />
+      </div>
+      <div className="project card-2" onClick={() => loadVideo(projects[2])}>
+        <ProjectCard cardObj={projects[2]} />
+      </div>
+      <div className="project card-3" onClick={() => loadVideo(projects[1])}>
+        <ProjectCard cardObj={projects[1]} />
+      </div>
+
+      <div className="project card-4" onClick={() => loadVideo(projects[4])}>
+        <ProjectCard cardObj={{ ...projects[4], col: 1 }} />
       </div>
 
       <div
@@ -217,23 +213,7 @@ const Portfolio = () => {
       </div>
 
       <style jsx>{`
-          .site-container {
-            width: 100%;
-            height: 100%;
-            min-height: 100vh;
-            max-height: 100vh;
-            background-image: url("../static/bg-code-img-1.jpg");
-            background-size: cover;
-            background-position: center;
-            display: grid;
-            grid-template-columns: auto 1fr 1fr 1fr auto;
-            grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-            grid-row-gap: 1rem;
-            grid-column-gap: 1rem;
-            font-family: "Nunito", sans-serif;
-            font-weight: 200;
-            color: #bfb5b5;
-          }
+
 
           .project {
             width: 275px;
@@ -241,29 +221,38 @@ const Portfolio = () => {
             box-shadow: 10px 10px 20px #2f2f2f85;
             cursor: pointer;
             justify-self: center;
+            align-self: center;
           }
 
-          .projects-container {
-            grid-row: 2/6;
+          .card-1 {
+            grid-row: 2/3;
+            grid-column: 1/3;
+            justify-self: center;
+            align-self: center;
+          }
+
+          .card-2 {
+            grid-row: 4/5;
+            grid-column: 1/3;
+            justify-self: center;
+            align-self: center;
+          }
+
+          .card-3 {
+            grid-row: 2/3;
             grid-column: 4/6;
-            justify-self: start;
-            justify-items: center;
-            overflow-y: scroll;
+            justify-self: center;
+            align-self: center;
           }
 
+          .card-4 {
+            grid-row: 4/5;
+            grid-column: 4/6;
+            justify-self: center;
+            align-self: center;
+          }
         
 
-
-          .gradient {
-            grid-row: 1 / 6;
-            grid-column: 1/6;
-            background-color: #d1959233;
-            background-image: linear-gradient(
-              315deg,
-              #d1959290 0%,
-              #c81f7090 74%
-            );
-          }
 
           .video-container {
             grid-row: 2/5;
@@ -273,51 +262,44 @@ const Portfolio = () => {
 
           @media (max-width: 425px) {
 
-           .card-5, .card-6, .card-7, .card-8 {
-              visibility: hidden;
-            }
 
             .card-1 {
-              magin: 1rem; 
-              grid-row: 2/4;
-              grid-column: 2/4;
+             
+              grid-row: 2/3;
+              grid-column: 1/6;
               jusify-self: center;
               align-self: center;
               }
 
             .card-2 {
-              magin: 1rem; 
-              grid-row: 3/5;
-              grid-column: 2/4;
-          
+               
+              grid-row: 3/4;
+              grid-column: 1/6;
               align-self: center;
             }
 
             .card-3 {
-              magin: 1rem; 
-              grid-row: 2/4;
-              grid-column: 3/5;
-             
+           
+              grid-row: 4/5;
+              grid-column: 1/6;
               align-self: center;
             }
 
             .card-4 {
-              magin: 1rem; 
-              grid-row: 3/5;
-              grid-column: 3/5;
+              grid-row: 5/6;
+              grid-column: 1/6;
               jusify-self: center;
               align-self: center;
             }
             .project {
-              width:75%;
+              margin: 3rem 0;
+              width:90%;
               box-shadow: none;
               background-color:unset;
               align-self: center;
           }
 
-          .card-3, .card-4 {
-            justify-self: right;;
-          }
+ 
 
           .video-container {
             grid-row: 2/6;

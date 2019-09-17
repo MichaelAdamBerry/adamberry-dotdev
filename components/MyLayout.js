@@ -70,6 +70,7 @@ export default function Layout({ children, bgImg, bgImgSm }) {
             height: 100%;
 
             overflow-y: scroll;
+            overflow-x: hidden;
             background-image: url(${bgImg});
             background-size: cover;
             background-position: center bottom;
@@ -82,12 +83,18 @@ export default function Layout({ children, bgImg, bgImgSm }) {
           }
 
           @media (max-width: 800px) {
-            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+            .site-container {
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+              grid-template-rows: auto;
+              background-position: right bottom;
+            }
           }
 
           @media (max-width: 425px) {
             .site-container {
               background-image: url(${bgImgSm ? bgImgSm : bgImg});
+              grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+              grid-template-rows: auto;
             }
           }
         `}</style>
