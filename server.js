@@ -4,8 +4,8 @@ const bodyParser = require("body-parser");
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handle = app.getRequestHandler();
-const mailer = require("./server/mailer/mailer-sendgrid.js");
-const sendGrid = require("./server/posts-sendgrid");
+const sendgrid = require("./server/mailer/mailer-sendgrid.js");
+
 app
   .prepare()
   .then(() => {
@@ -18,7 +18,7 @@ app
     server.post("/api/contact", (req, res) => {
       const { email, message } = req.body;
       console.log(req.body);
-      mailer
+      sendgrid
         .send(email, message)
         .then(() => {
           console.log(`sent the message from ${email}`);

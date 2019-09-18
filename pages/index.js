@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ContactCardFormik from "../components/ContactCardFormik";
-
 import Layout from "../components/MyLayout";
 import Nav from "../components/Nav";
 import { useSpring, animated, config } from "react-spring";
@@ -9,23 +8,7 @@ import MobileNav from "../components/MobileNav";
 
 export default () => {
   const [loadingState, setLoadingState] = useState("");
-
-  const sendOnSubmit = async values => {
-    const data = await JSON.stringify(values);
-    fetch("./api/contact", {
-      method: "post",
-      headers: {
-        Accept: "application/json, text/plain */*",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    }).then(res => {
-      res.status === 200
-        ? setLoadingState("submitted")
-        : setLoadingState("error");
-    });
-  };
-
+  console.log(process.env.API_KEY);
   const { opacity } = useSpring({
     from: {
       opacity: 0
@@ -34,6 +17,7 @@ export default () => {
 
     config: config.wobbly
   });
+
   return (
     <animated.div style={{ opacity: opacity }}>
       <Layout

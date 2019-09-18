@@ -5,7 +5,7 @@ const PhotoGrid = ({ data }) => {
   const windowWidth = window.innerWidth;
   const columns = windowWidth < 800 ? 2 : 3;
 
-  const width = windowWidth > 600 ? windowWidth * 0.4 : windowWidth * 0.8;
+  const width = windowWidth > 600 ? windowWidth * 0.3 : windowWidth * 0.8;
 
   // Hook3: Hold items
   const [items, set] = useState(data);
