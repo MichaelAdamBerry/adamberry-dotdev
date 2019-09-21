@@ -1,6 +1,14 @@
+import React, { useState } from "react";
 import Head from "next/head";
+import { animated, useSpring } from "react-spring";
+import styled from "@emotion/styled";
+import MobileNav from "./MobileNav";
+import LetsTalkButton from "./LetsTalkButton";
+import ContactCardFormik from "./ContactCardFormik";
 
 export default function Layout({ children, bgImg, bgImgSm }) {
+  console.log(process.env.API_KEY);
+
   return (
     <>
       <Head>
@@ -17,10 +25,30 @@ export default function Layout({ children, bgImg, bgImgSm }) {
           rel="stylesheet"
         />
       </Head>
+      <Header></Header>
+
       <div className="main">
-        <div className="site-container">{children}</div>
+        <div className="site-container">
+          <div className="mobile-nav-container">
+            <MobileNav width="100vw" />
+          </div>
+          <div className="desktop-nav-container">
+            <MobileNav />
+          </div>
+
+          {children}
+        </div>
 
         <style jsx global>{`
+          .desktop-nav-container,
+          mobile-nav-container {
+            height: 100vh;
+          }
+
+          .mobile-nav-container {
+            display: none;
+          }
+
           body {
             margin: 0;
           }
@@ -75,7 +103,7 @@ export default function Layout({ children, bgImg, bgImgSm }) {
             background-position: center bottom;
             display: grid;
             grid-template-columns: 10rem 1fr 1fr 1fr auto;
-            grid-template-rows: 15vh 25vh 25vh 25vh 10vh;
+            grid-template-rows: 100px 25vh 25vh 25vh 10vh;
             font-family: "Nunito", sans-serif;
             font-weight: 200;
             color: #bfb5b5;
@@ -84,7 +112,7 @@ export default function Layout({ children, bgImg, bgImgSm }) {
           @media (max-width: 800px) {
             .site-container {
               grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-              grid-template-rows: auto;
+              grid-template-rows: unset;
               background-position: right bottom;
             }
           }
@@ -95,9 +123,35 @@ export default function Layout({ children, bgImg, bgImgSm }) {
               grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
               grid-template-rows: auto;
             }
+
+            .desktop-nav-container {
+              display: none;
+            }
+            .mobile-nav-container {
+              display: block;
+            }
+
+            .content-container {
+              max-width: unset;
+            }
+
+            .content div {
+              margin: 0;
+            }
           }
         `}</style>
       </div>
     </>
   );
 }
+
+const Header = styled.header`
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100px;
+
+  @media (max-width: 425px) {
+    height: 70px;
+  }
+`;

@@ -4,12 +4,12 @@ import styled from "styled-components";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-library.add(fab);
+library.add(fab, );
 
 const Nav = ({ current }) => {
   const iconStyles = {
-    width: "1em",
-    height: "1em"
+    width: "1.5rem",
+    height: "1.5rem"
   };
   return (
     <>
@@ -44,7 +44,9 @@ const Nav = ({ current }) => {
       <style jsx>
         {`
           .nav {
-            grid-column: 4/6;
+            width: 75%;
+            justify-self: right;
+            grid-column: 3/6;
             grid-row: 1/2;
             align-self: center;
             display: flex;
@@ -56,6 +58,7 @@ const Nav = ({ current }) => {
           a {
             color: var(--blueish);
             text-decoration: none;
+            font-size: 1.5rem;
           }
 
           .current a {

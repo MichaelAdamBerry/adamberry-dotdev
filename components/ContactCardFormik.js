@@ -109,7 +109,7 @@ const ContactCardFormik = () => {
         input {
           padding: 0.5rem;
           font-size: 16px;
-          width: 100%;
+          width: 95%;
           display: block;
           border-radius: 4px;
           border: 1px solid #ccc;

@@ -1,22 +1,19 @@
-require("dotenv").config();
+const webpack = require("webpack");
 
-const path = require("path");
-const Dotenv = require("dotenv-webpack");
+require("dotenv").config();
 
 module.exports = {
   webpack: config => {
-    config.plugins = config.plugins || [];
+    config.node = {
+      fs: "empty"
+    };
 
-    config.plugins = [
-      ...config.plugins,
+    const env = Object.keys(process.env).reduce((acc, cur) => {
+      acc[`process.env.${cur}`] = JSON.stringify(process.env[cur]);
+      return acc;
+    }, {});
 
-      // Read the .env file
-      new Dotenv({
-        path: path.join(__dirname, ".env"),
-        systemvars: true
-      })
-    ];
-
+    config.plugins.push(new webpack.DefinePlugin(env));
     return config;
   },
   target: "serverless"

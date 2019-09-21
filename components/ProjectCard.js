@@ -58,7 +58,9 @@ export default ({ cardObj }) => {
 };
 
 const Project = styled.div`
-  width: 275px;
+  width: 90vw; 
+  max-width: 600px;
+  margin: auto;
   background-color: #2f2f2f85;
   box-shadow: 10px 10px 20px #2f2f2f85;
   cursor: pointer;

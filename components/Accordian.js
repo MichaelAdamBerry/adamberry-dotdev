@@ -1,45 +1,25 @@
 import React, { useState, useEffect } from "react";
-import TechStuff from "./about-components/TechStuff";
+import TechStuff, {
+  FrontEnd,
+  DataViz,
+  ECommerce,
+  JamStack
+} from "./about-components/TechStuff";
+
+import MobileMenu from "./about-components/MobileMenu";
 import NonTechStuff from "./about-components/NonTechStuff";
 import ActingStuff from "./about-components/ActingStuff";
 import Social from "./about-components/Social";
 import Production from "./about-components/Production";
 import Tldr from "./about-components/Tldr";
 import Frame from "./about-components/Frame";
-
-const Circle = ({ isOn }) => {
-  return (
-    <>
-      {isOn ? (
-        <img
-          src="/static/minus-sign.svg"
-          alt="minus sign icon to show button toggled open"
-        />
-      ) : (
-        <img
-          src="/static/plus-sign.svg"
-          alt="plus sign icon to show button toggled close"
-        />
-      )}
-      <style jsx>
-        {`
-          img {
-            padding-left: 5px;
-            width: 0.7rem;
-            height: 0.7rem;
-            line-height: 1rem;
-          }
-        `}
-      </style>
-    </>
-  );
-};
+import styled from "@emotion/styled";
 
 const Accordian = () => {
   const [windowWidth, setWindowWidth] = useState(800);
   const [socialOn, toggleSocial] = useState(false);
   const [pastWork, togglePastWork] = useState(false);
-  const [tldrOn, toggleTldr] = useState(true);
+  const [tldrOn, toggleTldr] = useState(false);
   const [workOn, toggleWork] = useState(false);
   const [aboutOn, toggleAbout] = useState(false);
 
@@ -47,6 +27,11 @@ const Accordian = () => {
   const [nonTechStuff, toggleNonTechStuff] = useState(false);
   const [actingSectionOn, toggleActingSection] = useState(false);
   const [carpentrySectionOn, toggleCarpentrySection] = useState(false);
+
+  const [frontEndOn, toggleFrontEnd] = useState(false);
+  const [jamStackOn, toggleJamStack] = useState(false);
+  const [eCommerceOn, toggleECommerce] = useState(false);
+  const [dataVizOn, toggleDataViz] = useState(false);
 
   useEffect(() => {
     if (typeof window != undefined) {
@@ -61,9 +46,23 @@ const Accordian = () => {
     toggleCarpentrySection(false);
   };
 
+  const toggleAllTech = () => {
+    toggleDataViz(!dataVizOn);
+    toggleECommerce(!eCommerceOn);
+    toggleJamStack(!jamStackOn);
+    toggleFrontEnd(!frontEndOn);
+  };
+
+  const closeTech = () => {
+    toggleDataViz(false);
+    toggleECommerce(false);
+    toggleJamStack(false);
+    toggleFrontEnd(false);
+  };
+
   return (
     <>
-      <div className="menu">
+      <div className="desktop-menu">
         <h3>
           <button
             className={tldrOn && "underline"}
@@ -79,7 +78,6 @@ const Accordian = () => {
           </button>
         </h3>
         <h3>
-          <Circle isOn={aboutOn} />
           <button
             className={aboutOn && "underline"}
             onClick={() => {
@@ -106,10 +104,76 @@ const Accordian = () => {
                 Web Dev
               </button>
             </h4>
+          </Frame>
+        </div>
+        {techStuffOn && (
+          <div className="sub-sub">
+            {" "}
+            <div className="sub-sub">
+              <Frame isOpen={techStuffOn}>
+                <h4>
+                  <button
+                    className={frontEndOn && "underline"}
+                    onClick={() => {
+                      closeTech();
+                      toggleFrontEnd(true);
+                    }}>
+                    Front End Development
+                  </button>
+                </h4>
+              </Frame>
+            </div>
+            <div className="sub-sub">
+              <Frame isOpen={techStuffOn}>
+                <h4>
+                  <button
+                    className={jamStackOn && "underline"}
+                    onClick={() => {
+                      closeTech();
+                      toggleJamStack(true);
+                    }}>
+                    Jam Stack
+                  </button>
+                </h4>
+              </Frame>
+            </div>
+            <div className="sub-sub">
+              <Frame isOpen={techStuffOn}>
+                <h4>
+                  <button
+                    className={eCommerceOn && "underline"}
+                    onClick={() => {
+                      closeTech();
+                      toggleECommerce(true);
+                    }}>
+                    e-commerce
+                  </button>
+                </h4>
+              </Frame>
+            </div>
+            <div className="sub-sub">
+              <Frame isOpen={techStuffOn}>
+                <h4>
+                  <button
+                    className={dataVizOn && "underline"}
+                    onClick={() => {
+                      closeTech();
+                      toggleDataViz(true);
+                    }}>
+                    Data Viz
+                  </button>
+                </h4>
+              </Frame>
+            </div>{" "}
+          </div>
+        )}
+        <div className="subMenu">
+          <Frame isOpen={aboutOn}>
             <h4>
               <button
                 className={nonTechStuff && "underline"}
                 onClick={() => {
+                  closeTech();
                   closeContent();
                   toggleNonTechStuff(true);
                 }}>
@@ -120,7 +184,6 @@ const Accordian = () => {
         </div>
 
         <h3>
-          <Circle isOn={pastWork} />
           <button
             className={pastWork && "underline"}
             onClick={() => {
@@ -181,17 +244,36 @@ const Accordian = () => {
           </Frame>
         </div>
       </div>
+      <MobileMenu
+        toggleTechStuff={toggleTechStuff}
+        closeTech={closeTech}
+        toggleDataViz={toggleDataViz}
+        toggleECommerce={toggleECommerce}
+        toggleJamStack={toggleJamStack}
+        toggleFrontEnd={toggleFrontEnd}
+        closeContent={closeContent}
+        toggleAllTech={toggleAllTech}
+        toggleNonTechStuff={toggleNonTechStuff}
+        toggleActingSection={toggleActingSection}
+        toggleCarpentrySection={toggleCarpentrySection}
+        toggleSocial={toggleSocial}
+        toggleTldr={toggleTldr}
+      />
       <div className="rendered-content">
-        {windowWidth > 500 ? <Tldr /> : tldrOn && <Tldr />}
+        {tldrOn && <Tldr />}
         {actingSectionOn && <ActingStuff />}
         {carpentrySectionOn && <Production />}
         {techStuffOn && <TechStuff />}
+        {techStuffOn && frontEndOn && <FrontEnd />}
+        {techStuffOn && jamStackOn && <JamStack />}
+        {techStuffOn && eCommerceOn && <ECommerce />}
+        {techStuffOn && dataVizOn && <DataViz />}
         {nonTechStuff && <NonTechStuff />}
         {socialOn && <Social />}
       </div>
 
       <style jsx>{`
-        .menu,
+        .desktop-menu,
         .rendered-content {
           grid-row: 2/6;
           margin-left: 1rem;
@@ -199,11 +281,13 @@ const Accordian = () => {
           z-index: 20;
         }
 
-        .menu {
-          grid-column: 2/3;
+        .desktop-menu {
+          grid-column: 1/3;
+          margin-top: 3rem;
         }
 
         .rendered-content {
+          margin-top: 50px;
           grid-column: 3/6;
           color: white;
           width: 80%;
@@ -214,14 +298,24 @@ const Accordian = () => {
         h3,
         h4,
         button {
-          font-size: 1rem;
+          font-size: 1.5rem;
         }
 
         h3 {
           grid-column: 1/4;
         }
 
+        h3,
+        h4 {
+          margin-bottom: 2rem;
+        }
+
         div.subMenu {
+          grid-column: 2/4;
+          padding-left: 1rem;
+        }
+
+        div.sub-sub {
           grid-column: 2/4;
           padding-left: 1rem;
         }
@@ -266,7 +360,7 @@ const Accordian = () => {
         }
 
         @media (max-width: 800px) {
-          .menu {
+          .desktop-menu {
             grid-column: 1/3;
             margin-left: 40px;
           }
@@ -278,7 +372,7 @@ const Accordian = () => {
         }
 
         @media (max-width: 600px) {
-          .menu {
+          .desktop-menu {
             padding: 1rem 10px;
             grid-row: 2/3;
             grid-column: 1/5;
@@ -286,7 +380,17 @@ const Accordian = () => {
           }
           .rendered-content {
             grid-column: 1/6;
-            grid-row: 3/6;
+            grid-row: 1/6;
+          }
+        }
+
+        @media (max-width: 425px) {
+          .desktop-menu {
+            display: none;
+          }
+          .rendered-content {
+            grid-column: 1/6;
+            grid-row: 2/6;
           }
         }
       `}</style>

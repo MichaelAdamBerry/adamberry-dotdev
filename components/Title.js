@@ -1,7 +1,7 @@
 import React from "react";
 import { useSpring, animated, config } from "react-spring";
 
-const Title = ({ name }) => {
+const Title = ({ name, subtitle }) => {
   const { opacity, xyz } = useSpring({
     from: {
       xyz: [0, -50, 0],
@@ -15,6 +15,7 @@ const Title = ({ name }) => {
     <>
       <div className="name">
         <h1>{name}</h1>
+
         <animated.h1
           style={{
             display: "flex",
@@ -27,6 +28,7 @@ const Title = ({ name }) => {
           <span>.</span>
         </animated.h1>
       </div>
+      {subtitle && <h2>{subtitle}</h2>}
       <style jsx>{`
         .name {
           grid-column: 2/4;
@@ -40,7 +42,16 @@ const Title = ({ name }) => {
           z-index: 20;
         }
 
-        .name h1 {
+        h2 {
+          grid-column: 2/4;
+          grid-row: 1/3;
+          justify-self: start;
+          align-self: center;
+          color: #861657;
+        }
+
+        .name h1,
+        h2 {
           font-family: "Nunito", sans-serif;
         }
 
@@ -51,17 +62,29 @@ const Title = ({ name }) => {
         }
 
         @media (max-width: 800px) {
-          .name {
+          .name,
+          h2 {
             grid-column: 1/5;
             justify-self: left;
             margin-left: 40px;
           }
-          .name h1 {
+          .name h1,
+          h2 {
             font-size: 1.7rem;
           }
           .name span {
             font-size: 2rem;
             margin-top: 0.8rem;
+          }
+        }
+
+        @media (max-width: 425px) {
+          .name,
+          h2 {
+            grid-column: 1/6;
+            justify-self: center;
+            margin-left: 0;
+            font-size: 1rem;
           }
         }
       `}</style>

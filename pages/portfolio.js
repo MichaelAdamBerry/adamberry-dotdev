@@ -178,21 +178,28 @@ const Portfolio = () => {
 
   return (
     <Layout bgImg="../static/bg-boardwalk.png">
-      <Nav current="portfolio" />
-      <MobileNav />
       <Title name="Work Examples" />
 
-      <div className="card-1" onClick={() => loadVideo(projects[3])}>
-        <ProjectCard cardObj={projects[3]} />
-      </div>
-      <div className="card-2" onClick={() => loadVideo(projects[2])}>
-        <ProjectCard cardObj={projects[2]} />
-      </div>
-      <div className="card-3" onClick={() => loadVideo(projects[1])}>
-        <ProjectCard cardObj={projects[1]} />
-      </div>
-      <div className="card-4" onClick={() => loadVideo(projects[4])}>
-        <ProjectCard cardObj={{ ...projects[4], col: 1 }} />
+      <div
+        style={{
+          gridRow: "2/5",
+          gridColumn: "1/6",
+          maxHeight: "85vh",
+          minHeight: "85vh",
+          overflowY: "scroll"
+        }}>
+        <div className="card-1" onClick={() => loadVideo(projects[3])}>
+          <ProjectCard cardObj={projects[3]} />
+        </div>
+        <div className="card-2" onClick={() => loadVideo(projects[2])}>
+          <ProjectCard cardObj={projects[2]} />
+        </div>
+        <div className="card-3" onClick={() => loadVideo(projects[1])}>
+          <ProjectCard cardObj={projects[1]} />
+        </div>
+        <div className="card-4" onClick={() => loadVideo(projects[4])}>
+          <ProjectCard cardObj={{ ...projects[4], col: 1 }} />
+        </div>
       </div>
 
       <div
@@ -215,8 +222,7 @@ const Portfolio = () => {
       <style jsx>{`
 
           .card-1 {
-            grid-row: 2/3;
-            grid-column: 1/3;
+            width: 100%;
             justify-self: center;
             align-self: center;
             margin-bottom: 1rem;
@@ -224,32 +230,25 @@ const Portfolio = () => {
           }
 
           .card-2 {
-            grid-row: 4/5;
-            grid-column: 1/3;
+            width: 100%;
             justify-self: center;
             align-self: center;
             margin-bottom: 1rem;
           }
 
           .card-3 {
-            grid-row: 2/3;
-            grid-column: 4/6;
+            width: 100%;
             justify-self: center;
             align-self: center;
             margin-bottom: 1rem;
           }
 
           .card-4 {
-            grid-row: 4/5;
-            grid-column: 4/6;
+            width: 100%;
             justify-self: center;
             align-self: center;
           }
         
-
-
-
-
           @media (max-width: 425px) {
 
 
