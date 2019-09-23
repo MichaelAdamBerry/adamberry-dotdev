@@ -245,6 +245,7 @@ const Accordian = () => {
         </div>
       </div>
       <MobileMenu
+        windowWidth={windowWidth}
         toggleTechStuff={toggleTechStuff}
         closeTech={closeTech}
         toggleDataViz={toggleDataViz}

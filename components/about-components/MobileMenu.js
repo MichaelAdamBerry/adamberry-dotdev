@@ -9,6 +9,7 @@ const MobileMenu = props => {
   }, []);
 
   const {
+    windowWidth,
     toggleTechStuff,
     closeTech,
     toggleDataViz,
@@ -36,8 +37,8 @@ const MobileMenu = props => {
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
           <radialGradient id="myGradient">
-            <stop offset="10%" stop-color="#98d9e1" />
-            <stop offset="95%" stop-color="#d6aed6" />
+            <stop offset="10%" stopColor="#98d9e1" />
+            <stop offset="95%" stopColor="#d6aed6" />
           </radialGradient>
           <filter id="goo">
             <feGaussianBlur
@@ -62,13 +63,15 @@ const MobileMenu = props => {
           gridColumn: "1/6",
           alignItems: "center",
           opacity: opacity,
-          display: "grid",
+          display: windowWidth > 425 ? "none" : "grid",
           alignContent: "center",
           justifyContent: "center",
           filter: `url('#goo')`
         }}>
         <animated.button
           style={{
+            backgroundColor: "#fff0",
+            border: "none",
             gridColumn: "1/2",
             gridRow: "1/2",
             transform: x.interpolate(x => `translate3d(${x}px, ${x}px, 0)`)
@@ -98,6 +101,8 @@ const MobileMenu = props => {
         </animated.button>
         <animated.button
           style={{
+            backgroundColor: "#fff0",
+            border: "none",
             gridColumn: "1/2",
             gridRow: "1/2",
             transform: x.interpolate(x => `translate3d(${-1 * x}px, ${x}px, 0)`)
@@ -127,6 +132,8 @@ const MobileMenu = props => {
         </animated.button>
         <animated.button
           style={{
+            backgroundColor: "#fff0",
+            border: "none",
             gridColumn: "1/2",
             gridRow: "1/2",
             transform: x.interpolate(
@@ -158,6 +165,8 @@ const MobileMenu = props => {
         </animated.button>
         <animated.button
           style={{
+            backgroundColor: "#fff0",
+            border: "none",
             gridColumn: "1/2",
             gridRow: "1/2",
             transform: x.interpolate(x => `translate3d(${x}px, ${-1 * x}px, 0)`)

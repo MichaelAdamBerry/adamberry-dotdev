@@ -143,16 +143,38 @@ export const Card = styled.div`
   @media (max-width: 425px) {
     margin-top: 3rem;
     padding: 0.5rem;
+    grid-column-gap: 1rem;
 
     li {
       font-size: smaller;
     }
-    img {
-      width: 125px;
+
+    .left {
+      padding: 1rem;
+
+      img {
+        width: 100px;
+        height: 100px;
+      }
     }
 
     .right {
       padding-left: 0.5rem;
     }
+  }
+`;
+
+export const Blurb = styled.div`
+  width: 90%;
+  margin: auto;
+
+  h3 {
+    color: var(--blueish);
+    text-align: center;
+    margin: 0.5rem 0;
+  }
+  p {
+    color: var(--blueish);
+    line-height: 1.7rem;
   }
 `;

@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
-import { animated, useSpring } from "react-spring";
 import styled from "@emotion/styled";
 import MobileNav from "./MobileNav";
-import LetsTalkButton from "./LetsTalkButton";
-import ContactCardFormik from "./ContactCardFormik";
 
 export default function Layout({ children, bgImg, bgImgSm }) {
-  console.log(process.env.API_KEY);
-
   return (
     <>
       <Head>

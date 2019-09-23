@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { animated, useSpring } from "react-spring";
 
-const LetsTalkButton = ({ onClick, visibility }) => {
+const LetsTalkButton = ({ onClick, isForm }) => {
   const [isHovered, setHovered] = useState(false);
 
-  const { color, backgroundColor } = useSpring({
+  const { color, backgroundColor, opacity } = useSpring({
     color: isHovered ? "white" : "black",
-    backgroundColor: isHovered ? "#015463" : "white"
+    backgroundColor: isHovered ? "#015463" : "#faeae4",
+    opacity: !isForm ? 1 : 0
   });
 
   return (
@@ -19,12 +20,13 @@ const LetsTalkButton = ({ onClick, visibility }) => {
         style={{
           color: color,
           backgroundColor: backgroundColor,
-          visibility: visibility
+          opacity: opacity
         }}>
-        Let's Talk
+        <p>Get In Touch</p>
+
         <animated.svg
           style={{
-            visibility: visibility,
+            opacity: opacity,
             fill: backgroundColor,
             width: "60px",
             height: "18px",
@@ -66,9 +68,12 @@ const BtnContainer = styled.span`
     bottom: 30px;
     right: 30px;
     button {
-      width: 100px;
+      width: 138px;
       border-radius: 20%;
       height: 100px;
+    }
+    p {
+      margin-bottom: 0.5rem;
     }
   }
 `;

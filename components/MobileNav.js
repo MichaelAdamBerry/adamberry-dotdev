@@ -126,7 +126,7 @@ const MobileNav = props => {
         
             .mobile-nav {
               position: fixed;
-              top: 2rem;
+              top: 1.7rem;
               left: 1rem;
             }
 
@@ -172,6 +172,7 @@ const MobileNav = props => {
             button {
               font-size: 1.5rem;
               cursor: pointer;
+            
               background: none;
               border: none;
               color: white;

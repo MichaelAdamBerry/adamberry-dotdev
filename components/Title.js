@@ -40,6 +40,7 @@ const Title = ({ name, subtitle }) => {
           margin-top: 1rem;
           opacity: 0.99;
           z-index: 20;
+          transform: translate3d(0.5rem, 0px, 0px);
         }
 
         h2 {

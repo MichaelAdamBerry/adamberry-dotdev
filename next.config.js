@@ -3,18 +3,9 @@ const webpack = require("webpack");
 require("dotenv").config();
 
 module.exports = {
-  webpack: config => {
-    config.node = {
-      fs: "empty"
-    };
-
-    const env = Object.keys(process.env).reduce((acc, cur) => {
-      acc[`process.env.${cur}`] = JSON.stringify(process.env[cur]);
-      return acc;
-    }, {});
-
-    config.plugins.push(new webpack.DefinePlugin(env));
-    return config;
+  env: {
+    API_KEY:
+      "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"
   },
   target: "serverless"
 };
