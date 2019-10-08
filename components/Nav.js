@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-library.add(fab, );
+library.add(fab);
 
 const Nav = ({ current }) => {
   const iconStyles = {
@@ -15,13 +15,13 @@ const Nav = ({ current }) => {
     <>
       <div className="nav">
         <Link href="/">
-          <a className={current === "home" ? "current" : "static"}>Home</a>
+          <Page>Home</Page>
         </Link>
         <Link href="/about">
-          <a>About</a>
+          <Page>About</Page>
         </Link>
         <Link href="/portfolio">
-          <a>Portfolio</a>
+          <Page>Portfolio</Page>
         </Link>
 
         <div className="item">
@@ -55,26 +55,21 @@ const Nav = ({ current }) => {
             z-index: 100;
           }
 
-          a {
-            color: var(--blueish);
-            text-decoration: none;
-            font-size: 1.5rem;
-          }
-
-          .current a {
-            color: #f5d231;
-            text
-          }
-          @media (max-width: 800px) {
+          \ @media (max-width: 500px) {
             .nav {
               display: none;
             }
           }
-    
         `}
       </style>
     </>
   );
 };
+
+const Page = styled.a`
+  text-decoration: dotted;
+  text-decoration-color: var(--purp);
+  font-size: 1.2rem;
+`;
 
 export default Nav;

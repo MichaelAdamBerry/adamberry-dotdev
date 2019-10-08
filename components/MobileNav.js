@@ -32,7 +32,7 @@ const MobileNav = props => {
           height: "100vh",
           width: !props.width ? "30vw" : props.width,
           bottom: "0",
-          backgroundColor: "#2f2f2f",
+          backgroundColor: "var(--color-dark-base)",
           transform: x.interpolate(x => `translate3d(${-1 * x}vw, 0, 0 )`)
         }}>
         <div className="link-container">
@@ -144,7 +144,7 @@ const MobileNav = props => {
             }
 
             .item a {
-              color: #fff;
+              color: var(--color-dark-text-default);
             }
             .link-container {
                 width: 100%;
@@ -152,7 +152,7 @@ const MobileNav = props => {
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
                 grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-                background-color: #2f2f2f;
+                background-color: var(--dark-color-base);
                 opacity: .99;
                 z-index: 300;
 
@@ -160,7 +160,7 @@ const MobileNav = props => {
             }
 
             .nav-item a {
-                color: white;
+                color: var(--color-dark-text-default);
                 text-decoration: none;
                 font-size: 1.5rem;
             }

@@ -3,9 +3,9 @@ import { useTransition, animated } from "react-spring";
 
 const PhotoGrid = ({ data }) => {
   const windowWidth = window.innerWidth;
-  const columns = windowWidth < 800 ? 2 : 3;
+  const columns = windowWidth < 500 ? 2 : 3;
 
-  const width = windowWidth > 600 ? windowWidth * 0.3 : windowWidth * 0.8;
+  const width = windowWidth > 800 ? 600 : 500;
 
   // Hook3: Hold items
   const [items, set] = useState(data);
@@ -15,9 +15,9 @@ const PhotoGrid = ({ data }) => {
     const column = heights.indexOf(Math.min(...heights)); // Basic masonry-grid placing, puts tile into the smallest column using Math.min
     const xy = [
       (width / columns) * column,
-      (heights[column] += child.height / 2) - child.height / 2
+      (heights[column] += child.height / 1.5) - child.height / 1.5
     ]; // X = container width / number of columns * column index, Y = it's just the height of the current column
-    return { ...child, xy, width: width / columns, height: child.height / 2 };
+    return { ...child, xy, width: width / columns, height: child.height / 1.5 };
   });
 
   const transitions = useTransition(gridItems, item => item.css, {
@@ -51,8 +51,9 @@ const PhotoGrid = ({ data }) => {
                 backgroundSize: "cover",
                 margin: "15px",
                 backgroundPosition: "center center",
-                width: windowWidth < 500 ? "75%" : "auto",
-                height: windowWidth < 500 ? "75%" : "100%",
+                width: width,
+                height: "100%",
+                maxWidth: "180px",
                 overflow: "hidden",
                 textTransform: "uppercase",
                 fontSize: "10px",
@@ -67,8 +68,9 @@ const PhotoGrid = ({ data }) => {
       <style jsx>{`
         .list {
           position: relative;
-          width: 100%;
+
           height: 100%;
+          margin: auto;
         }
       `}</style>
     </>

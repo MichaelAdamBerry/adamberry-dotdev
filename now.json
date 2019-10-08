@@ -1,8 +1,26 @@
 {
-  "version": 2,
+  "name": "Adam Berry's Dope Website",
+  "version": "2.0.0",
   "builds": [
-    { "src": "package.json", "use": "@now/next" },
-    { "src": "server/posts-sendgrid.js", "use": "@now/node" }
+    {
+      "src": "package.json",
+      "use": "@now/next"
+    }
   ],
-  "routes": [{ "src": "/api/contact", "dest": "server/posts-sendgrid.js" }]
+  "env": {
+    "CLIENT_SECRET": "@client-secret",
+    "CLIENT_ID": "@client-id",
+    "ACCESS_TOKEN": "@access-token",
+    "REFRESH_TOKEN": "@refresh-token",
+    "SECRET_PASS": "@secret-pass"
+  },
+  "build": {
+    "env": {
+      "CLIENT_SECRET": "@client-secret",
+      "CLIENT_ID": "@client-id",
+      "ACCESS_TOKEN": "@access-token",
+      "REFRESH_TOKEN": "@refresh-token",
+      "SECRET_PASS": "@secret-pass"
+    }
+  }
 }

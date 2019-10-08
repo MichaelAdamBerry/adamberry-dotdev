@@ -35,7 +35,7 @@ const Title = ({ name, subtitle }) => {
           grid-row: 1/2;
           justify-self: start;
           align-self: center;
-          color: #861657;
+          color: var(--dark-color-text-default);
           display: flex;
           margin-top: 1rem;
           opacity: 0.99;
@@ -48,7 +48,7 @@ const Title = ({ name, subtitle }) => {
           grid-row: 1/3;
           justify-self: start;
           align-self: center;
-          color: #861657;
+          color: var(--dark-purp);
         }
 
         .name h1,

@@ -72,6 +72,7 @@ const Accordian = () => {
               toggleWork(false);
               toggleAbout(false);
               closeContent();
+              closeTech();
               toggleTldr(!tldrOn);
             }}>
             tldr;
@@ -88,29 +89,15 @@ const Accordian = () => {
               closeContent();
               toggleAbout(!aboutOn);
             }}>
-            About
+            Current Work
           </button>
         </h3>
 
-        <div className="subMenu">
-          <Frame isOpen={aboutOn}>
-            <h4>
-              <button
-                className={techStuffOn && "underline"}
-                onClick={() => {
-                  closeContent();
-                  toggleTechStuff(true);
-                }}>
-                Web Dev
-              </button>
-            </h4>
-          </Frame>
-        </div>
-        {techStuffOn && (
-          <div className="sub-sub">
+        {aboutOn && (
+          <div className="subMenu">
             {" "}
             <div className="sub-sub">
-              <Frame isOpen={techStuffOn}>
+              <Frame isOpen={aboutOn}>
                 <h4>
                   <button
                     className={frontEndOn && "underline"}
@@ -118,13 +105,13 @@ const Accordian = () => {
                       closeTech();
                       toggleFrontEnd(true);
                     }}>
-                    Front End Development
+                    Front End
                   </button>
                 </h4>
               </Frame>
             </div>
             <div className="sub-sub">
-              <Frame isOpen={techStuffOn}>
+              <Frame isOpen={aboutOn}>
                 <h4>
                   <button
                     className={jamStackOn && "underline"}
@@ -138,7 +125,7 @@ const Accordian = () => {
               </Frame>
             </div>
             <div className="sub-sub">
-              <Frame isOpen={techStuffOn}>
+              <Frame isOpen={aboutOn}>
                 <h4>
                   <button
                     className={eCommerceOn && "underline"}
@@ -152,7 +139,7 @@ const Accordian = () => {
               </Frame>
             </div>
             <div className="sub-sub">
-              <Frame isOpen={techStuffOn}>
+              <Frame isOpen={aboutOn}>
                 <h4>
                   <button
                     className={dataVizOn && "underline"}
@@ -167,34 +154,20 @@ const Accordian = () => {
             </div>{" "}
           </div>
         )}
-        <div className="subMenu">
-          <Frame isOpen={aboutOn}>
-            <h4>
-              <button
-                className={nonTechStuff && "underline"}
-                onClick={() => {
-                  closeTech();
-                  closeContent();
-                  toggleNonTechStuff(true);
-                }}>
-                Life
-              </button>
-            </h4>
-          </Frame>
-        </div>
 
         <h3>
           <button
             className={pastWork && "underline"}
             onClick={() => {
               closeContent();
+              closeTech();
               toggleTldr(false);
               toggleWork(false);
               toggleSocial(false);
               togglePastWork(!pastWork);
               toggleAbout(false);
             }}>
-            Previous
+            Past Work
           </button>
         </h3>
 
@@ -205,6 +178,7 @@ const Accordian = () => {
                 className={actingSectionOn && "underline"}
                 onClick={() => {
                   closeContent();
+                  closeTech();
                   toggleActingSection(true);
                 }}>
                 Acting
@@ -216,6 +190,7 @@ const Accordian = () => {
                 className={carpentrySectionOn && "underline"}
                 onClick={() => {
                   closeContent();
+                  closeTech();
                   toggleCarpentrySection(true);
                 }}>
                 Production
@@ -229,13 +204,14 @@ const Accordian = () => {
             className={socialOn && "underline"}
             onClick={() => {
               closeContent();
+              closeTech();
               toggleTldr(false);
               togglePastWork(false);
               toggleWork(false);
               toggleSocial(!socialOn);
-              toggleAbout(false);
+              toggleAbout(!aboutOn);
             }}>
-            Follow Me
+            About Me
           </button>
         </h3>
         <div className="subMenu">
@@ -264,13 +240,18 @@ const Accordian = () => {
         {tldrOn && <Tldr />}
         {actingSectionOn && <ActingStuff />}
         {carpentrySectionOn && <Production />}
-        {techStuffOn && <TechStuff />}
-        {techStuffOn && frontEndOn && <FrontEnd />}
-        {techStuffOn && jamStackOn && <JamStack />}
-        {techStuffOn && eCommerceOn && <ECommerce />}
-        {techStuffOn && dataVizOn && <DataViz />}
-        {nonTechStuff && <NonTechStuff />}
-        {socialOn && <Social />}
+
+        {frontEndOn && <FrontEnd />}
+        {jamStackOn && <JamStack />}
+        {eCommerceOn && <ECommerce />}
+        {dataVizOn && <DataViz />}
+
+        {socialOn && (
+          <>
+            <NonTechStuff />
+            <Social />
+          </>
+        )}
       </div>
 
       <style jsx>{`

@@ -2,8 +2,9 @@ import React from "react";
 import Head from "next/head";
 import styled from "@emotion/styled";
 import MobileNav from "./MobileNav";
+import Nav from "./Nav";
 
-export default function Layout({ children, bgImg, bgImgSm }) {
+export default function Layout({ children }) {
   return (
     <>
       <Head>
@@ -27,9 +28,7 @@ export default function Layout({ children, bgImg, bgImgSm }) {
           <div className="mobile-nav-container">
             <MobileNav width="100vw" />
           </div>
-          <div className="desktop-nav-container">
-            <MobileNav />
-          </div>
+          <Nav />
 
           {children}
         </div>
@@ -49,10 +48,9 @@ export default function Layout({ children, bgImg, bgImgSm }) {
           }
           .main {
             width: 100%;
-            margin: 0;
-          }
-          .main {
             height: 100vh;
+            margin: 0;
+            background-color: var(--dark-color-base);
           }
 
           h1,
@@ -62,12 +60,18 @@ export default function Layout({ children, bgImg, bgImgSm }) {
           h5,
           p {
             margin: 0;
+            font-weight: 200;
           }
 
           a {
             text-decoration-style: dotted;
-            color: var(--blueish);
+            color: var(--dark-color-text-default);
             cursor: pointer;
+          }
+
+          button.clear {
+            background-color: unset;
+            border: none;
           }
 
           ul {
@@ -80,9 +84,15 @@ export default function Layout({ children, bgImg, bgImgSm }) {
 
           :root {
             --purp: #861657;
+            --dark-purp: #fb8ccc;
             --sunshine: #fff000;
-            --blueish: #015463;
-            --pink: #f4bcbf;
+            --blueish: #9ab6bb;
+            --dark-color-background: #38444c;
+            --dark-color-border: #697278;
+            --dark-color-text-default: #f0f2f3;
+            --dark-color-base: #293238;
+            --dark-color-accent: #ec1a62;
+            --purp-gradient: linear-gradient(#861657, #fb8ccc);
           }
 
           .blue {
@@ -93,28 +103,26 @@ export default function Layout({ children, bgImg, bgImgSm }) {
             height: 100%;
             overflow-y: scroll;
             overflow-x: hidden;
-            background-image: url(${bgImg});
-            background-size: cover;
-            background-position: center bottom;
+            background-color: var(--dark-color-background);
             display: grid;
             grid-template-columns: 10rem 1fr 1fr 1fr auto;
             grid-template-rows: 100px 25vh 25vh 25vh 10vh;
             font-family: "Nunito", sans-serif;
             font-weight: 200;
-            color: #bfb5b5;
+            color: var(--dark-color-text-default);
+            max-width: 1400px;
+            margin: auto;
           }
 
           @media (max-width: 800px) {
             .site-container {
               grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
               grid-template-rows: unset;
-              background-position: right bottom;
             }
           }
 
           @media (max-width: 425px) {
             .site-container {
-              background-image: url(${bgImgSm ? bgImgSm : bgImg});
               grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
               grid-template-rows: auto;
             }

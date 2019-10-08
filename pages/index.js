@@ -4,7 +4,7 @@ import { animated, useSpring } from "react-spring";
 import Title from "../components/Title";
 import LetsTalkButton from "../components/LetsTalkButton";
 import Contact from "../components/contact-form/Contact";
-import Quote from "../components/Quote";
+import WordCloud from "../components/WordCloud";
 export default () => {
   const [isForm, setForm] = useState(false);
   const { opacity } = useSpring({
@@ -13,6 +13,7 @@ export default () => {
     },
     opacity: 1
   });
+
   return (
     <animated.div style={{ opacity: opacity }}>
       <Layout
@@ -22,9 +23,13 @@ export default () => {
           name={"Michael Adam Berry"}
           subtitle={!isForm ? "Full Stack Web Development" : ""}
         />
+
         <LetsTalkButton onClick={() => setForm(!isForm)} isForm={isForm} />
-        {isForm && <Contact setForm={setForm} opacity={opacity} />}
-        <Quote />
+        {isForm ? (
+          <Contact setForm={setForm} opacity={opacity} />
+        ) : (
+          <WordCloud />
+        )}
       </Layout>
     </animated.div>
   );

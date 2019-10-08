@@ -1,111 +1,136 @@
 import React, { useState } from "react";
+
 import { Formik } from "formik";
-import "isomorphic-fetch";
+
 import * as Yup from "yup";
+import "isomorphic-fetch";
 
 const ContactCardFormik = () => {
-  async function sendEmail(values) {
-    let data = await JSON.stringify(values);
-    let response = await fetch("./api/contact", {
+  const [isSubmitted, setSubmitted] = useState(false);
+  function sendWithNodeMailer(data) {
+    fetch("/api/contact", {
       method: "post",
       headers: {
-        Accept: "application/json, text/plain */*",
+        Accept: "application/json, text/plain, */*",
         "Content-Type": "application/json"
       },
-      body: data
+      body: JSON.stringify(data)
+    }).then(res => {
+      if (res.status === 200) {
+        setSubmitted(true);
+      }
     });
-    console.log("responed with ", response);
+    console.log(data);
   }
-
-  const [successfulSubmission, setSuccessfulSubmission] = useState();
+  //TODO render conditionally success modal
   return (
     <>
-      <Formik
-        initialValues={{ email: "", message: "" }}
-        onSubmit={(values, { setSubmitting }) => {
-          sendEmail(values);
-          setSuccessfulSubmission(true);
-          values.email = "";
-          values.message = "";
-          setSubmitting(false);
-        }}
-        validationSchema={Yup.object().shape({
-          email: Yup.string()
-            .email()
-            .required("Required"),
+      {!isSubmitted ? (
+        <Formik
+          initialValues={{ emailAddress: "", summary: "" }}
+          onSubmit={(values, { setSubmitting }) => {
+            setSubmitting(true);
+            sendWithNodeMailer({
+              emailAddress: values.emailAddress,
+              summary: values.summary
+            });
 
-          message: Yup.string().required("Required")
-        })}>
-        {props => {
-          const {
-            values,
-            touched,
-            errors,
-            dirty,
-            isSubmitting,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            handleReset
-          } = props;
-          return (
-            <form onSubmit={handleSubmit}>
-              <label htmlFor="email" style={{ display: "block" }}>
-                Email
-              </label>
-              <input
-                id="email"
-                placeholder="Enter your email address"
-                type="text"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={
-                  errors.email && touched.email
-                    ? "text-input error"
-                    : "text-input"
-                }
-              />
+            values.emailAddress = "";
+            values.summary = "";
+            setSubmitting(false);
+          }}
+          validationSchema={Yup.object().shape({
+            emailAddress: Yup.string().required("Required"),
 
-              {errors.email && touched.email && (
-                <div className="input-feedback">{errors.email}</div>
-              )}
+            summary: Yup.string().required("Required")
+          })}>
+          {props => {
+            const {
+              values,
+              touched,
+              errors,
+              dirty,
+              isSubmitting,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              handleReset
+            } = props;
+            return (
+              <form onSubmit={handleSubmit}>
+                <label htmlFor="emailAddress" style={{ display: "block" }}>
+                  Email
+                </label>
+                <input
+                  id="emailAddress"
+                  placeholder="Enter your email address"
+                  type="text"
+                  value={values.emailAddress}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    errors.emailAddress && touched.emailAddress
+                      ? "text-input error"
+                      : "text-input"
+                  }
+                />
 
-              <label htmlFor="message" style={{ display: "block" }}>
-                Message
-              </label>
-              <input
-                id="message"
-                placeholder="How can I help?"
-                type="text"
-                value={values.message}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className={
-                  errors.message && touched.email
-                    ? "text-input error"
-                    : "text-input"
-                }
-              />
-              {errors.message && touched.email && (
-                <div className="input-feedback">{errors.message}</div>
-              )}
+                {errors.emailAddress && touched.emailAddress && (
+                  <div className="input-feedback">{errors.emailAddress}</div>
+                )}
 
-              <button
-                type="button"
-                className="outline"
-                onClick={handleReset}
-                disabled={!dirty || isSubmitting}>
-                Reset
-              </button>
-              <button type="submit" disabled={isSubmitting}>
-                Send
-              </button>
-            </form>
-          );
-        }}
-      </Formik>
+                <label htmlFor="summary" style={{ display: "block" }}>
+                  Message
+                </label>
+                <input
+                  id="summary"
+                  placeholder="How can I help?"
+                  type="text"
+                  value={values.summary}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    errors.summary && touched.emailAddress
+                      ? "text-input error"
+                      : "text-input"
+                  }
+                />
+                {errors.summary && touched.emailAddress && (
+                  <div className="input-feedback">{errors.summary}</div>
+                )}
+
+                <button
+                  type="button"
+                  className="outline"
+                  onClick={handleReset}
+                  disabled={!dirty || isSubmitting}>
+                  Reset
+                </button>
+                <button type="submit" disabled={isSubmitting}>
+                  Send
+                </button>
+              </form>
+            );
+          }}
+        </Formik>
+      ) : (
+        <div className="success">
+          <p>Thanks for reaching out! I'll be in touch soon.</p>
+        </div>
+      )}
       <style jsx>{`
+        .success {
+          height: 50%;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          justify-content: center;
+        }
+        .success p {
+          font-size: 1.3rem;
+          color: var(--dark-purp);
+        }
+
         input {
           padding: 0.5rem;
           font-size: 16px;

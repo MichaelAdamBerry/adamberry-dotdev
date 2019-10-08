@@ -8,7 +8,7 @@ export default ({ cardObj }) => {
   const { title, img, description, row, col } = cardObj;
 
   const { x } = useSpring({
-    x: hovered ? 0.8 : 0
+    x: hovered ? 0.95 : 0
   });
   const [show, set] = useState(true);
   const transitions = useTransition(show, null, {
@@ -42,8 +42,12 @@ export default ({ cardObj }) => {
                   <animated.div
                     style={{
                       minHeight: "100%",
-                      backgroundColor: "black",
-                      opacity: x.interpolate(x => x)
+                      backgroundColor: "var(--dark-color-base)",
+                      opacity: x.interpolate(x => x),
+                      padding: "0 3rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center"
                     }}>
                     <h3>{title}</h3>
                     <p>{description}</p>
@@ -58,10 +62,9 @@ export default ({ cardObj }) => {
 };
 
 const Project = styled.div`
-  width: 90vw; 
+  width: 90vw;
   max-width: 600px;
   margin: auto;
-  background-color: #2f2f2f85;
   box-shadow: 10px 10px 20px #2f2f2f85;
   cursor: pointer;
   justify-self: center;
@@ -79,9 +82,13 @@ const Project = styled.div`
     grid-column: 1/4;
   }
 
+  .img-container {
+    opacity: 0.99;
+  }
+
   .text {
-    background-color: "black",
-    paddingLeft: "1rem"
+    background-color: var(--dark-color-base);
+    padding-left: "1rem";
   }
 
   h3 {
@@ -99,17 +106,13 @@ const Project = styled.div`
     height: auto;
   }
 
-
   @media (max-width: 425px) {
- 
+    .text {
+      display: none;
+    }
 
-
-  .text {
-    display: none;
+    div.img-container {
+      width: 100%;
+    }
   }
-
-  div.img-container {
-    width: 100%;
-  }
-}
 `;

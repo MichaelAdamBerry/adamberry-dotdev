@@ -82,6 +82,7 @@ const ProjectList = styled.ul`
   min-height: 85vh;
   max-height: 85vh;
   overflow-y: scroll;
+  padding-bottom: 50vh;
 `;
 
 export default Portfolio;

@@ -17,7 +17,7 @@ const Contact = ({ opacity, setForm }) => {
           }}
           className="content-container">
           <div className="close-container">
-            <button className="close" onClick={() => setForm(false)}>
+            <button className="close clear" onClick={() => setForm(false)}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 15 15"
@@ -51,15 +51,14 @@ const Contact = ({ opacity, setForm }) => {
         }
 
         .content h1 {
-          font-weight: 700;
           font-size: 1.8rem;
           margin-top: 0;
-          color: var(--purp);
+          color: var(--dark-color-text-default);
         }
         .content p {
           font-size: 1.5rem;
           width: 20rem;
-          color: var(--purp);
+          color: var(--dark-purp);
         }
 
         .content p,

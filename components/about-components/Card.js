@@ -76,12 +76,13 @@ export const Card = styled.div`
   grid-template-rows: 3fr auto;
   padding: 10px;
   padding: 1rem;
-  background-color: white;
-  max-width: 500px;
+  background-color: var(--dark-color-base);
+
   align-items: center;
   border-radius: 3px;
   box-shadow: 0px 0px 20px #2f2f2f44;
   margin-bottom: 50px;
+  margin-top: 50px;
 
   .gallery {
     grid-column: 1/4;
