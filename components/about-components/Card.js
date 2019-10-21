@@ -61,6 +61,31 @@ export const FlexList = styled.div`
     text-align: center;
   }
 
+  figure {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    margin-top: 1rem;
+    box-shadow: 0px 5px 5px var(--dak-color-base);
+  }
+
+  figcaption {
+    margin: auto;
+    text-align: center;
+  }
+
+  img,
+  figcaption {
+    width: 100%;
+    max-width: 120px;
+  }
+
+  img {
+    padding: 0.5rem;
+    height: auto;
+    background-color: var(--dark-color-text-default);
+  }
+
   @media (max-width: 425px) {
     li {
       width: 45%;
@@ -76,11 +101,9 @@ export const Card = styled.div`
   grid-template-rows: 3fr auto;
   padding: 10px;
   padding: 1rem;
-  background-color: var(--dark-color-base);
 
   align-items: center;
   border-radius: 3px;
-  box-shadow: 0px 0px 20px #2f2f2f44;
   margin-bottom: 50px;
   margin-top: 50px;
 
@@ -93,11 +116,10 @@ export const Card = styled.div`
     grid-column: 1/2;
     grid-row: 1/2;
     border-radius: 3px;
-    box-shadow: 0px 0px 20px #2f2f2f44;
 
     img {
-      width: 150px;
-      height: 150px;
+      width: 180px;
+      height: auto;
     }
   }
 
@@ -163,10 +185,24 @@ export const Card = styled.div`
       padding-left: 0.5rem;
     }
   }
+
+  @media (max-width: 370px) {
+    display: block;
+    overflow: scroll;
+
+    img.left {
+      display: none;
+    }
+
+    .left,
+    .right {
+      margin: auto;
+    }
+  }
 `;
 
 export const Blurb = styled.div`
-  width: 90%;
+  width: 100%;
   margin: auto;
 
   h3 {

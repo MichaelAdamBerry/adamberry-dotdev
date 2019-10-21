@@ -1,8 +1,16 @@
 import React from "react";
 import styled from "@emotion/styled";
 import { animated, useSpring } from "react-spring";
-
-const Video = ({ isOpen, setVideoOpen, src, description, title }) => {
+//mp4, description, title, tech, url
+const Video = ({
+  isOpen,
+  setVideoOpen,
+  src,
+  description,
+  title,
+  tech,
+  url
+}) => {
   const { x } = useSpring({
     x: isOpen ? 1 : 0
   });
@@ -29,9 +37,19 @@ const Video = ({ isOpen, setVideoOpen, src, description, title }) => {
         )}
         <h2>{title}</h2>
         <p>{description}</p>
+        <p className="link">{url != "" && <a href={url}>Go to Site</a>}</p>
         <video autoPlay loop muted playsInline key={src}>
           <source src={src} type="video/mp4" />
         </video>
+        <div className="text">
+          <h3>Tech Stack :</h3>
+          <ul>
+            {tech != undefined &&
+              tech.map((d, i) => {
+                return <li key={i}>{d}</li>;
+              })}
+          </ul>
+        </div>
       </FixedVideo>
     </animated.div>
   );
@@ -40,7 +58,7 @@ const Video = ({ isOpen, setVideoOpen, src, description, title }) => {
 const FixedVideo = styled.div`
   position: fixed;
   top: 100px;
-  left: 5%;
+
   width: 100vw;
   height: calc(100vh - 100px);
 
@@ -50,6 +68,8 @@ const FixedVideo = styled.div`
 
   h2 {
     text-align: center;
+    margin-top: 2rem;
+    color: var(--dark-purp);
   }
   p {
     color: white;
@@ -58,10 +78,63 @@ const FixedVideo = styled.div`
     padding: 0.5rem;
   }
 
-  video {
-    width: 90vw;
-    height: auto;
+  h3 {
+    color: var(--dark-purp);
+  }
+
+  h3,
+  ul,
+  a,
+  .link {
+    font-size: 1.2rem;
+  }
+
+  .link a {
+    color: var(--dark-purp);
+    font-weight: 600;
+  }
+
+  .text {
+    width: 50vw;
     margin: auto;
+    display: flex;
+    margin-top: 2rem;
+  }
+
+  h3 {
+    width: 10rem;
+    font-weight: 600;
+    line-height: 2rem;
+  }
+
+  ul {
+    margin-top: 1rem;
+    margin: auto;
+    padding: 0;
+    width: 50vw;
+    display: flex;
+  }
+
+  li {
+    margin-right: 0.5rem;
+    line-height: 2rem;
+
+    &:after {
+      content: ",";
+    }
+  }
+
+  li:last-of-type {
+    &:after {
+      content: "";
+    }
+  }
+
+  video {
+    width: 50vw;
+    height: auto;
+    margin-left: 25vw;
+    margin-top: 2rem;
   }
 
   .close-container {
@@ -101,8 +174,15 @@ const FixedVideo = styled.div`
       text-align: left;
     }
 
-    video {
-      max-width: 90vw;
+    ul {
+      flex-wrap: wrap;
+    }
+
+    video,
+    .text {
+      width: 90vw;
+      margin-left: 5vw;
+      margin-right: 5vw;
     }
   }
 `;

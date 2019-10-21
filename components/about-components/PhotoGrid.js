@@ -5,7 +5,7 @@ const PhotoGrid = ({ data }) => {
   const windowWidth = window.innerWidth;
   const columns = windowWidth < 500 ? 2 : 3;
 
-  const width = windowWidth > 800 ? 600 : 500;
+  const width = windowWidth > 800 ? 560 : windowWidth < 425 ? 340 : 500;
 
   // Hook3: Hold items
   const [items, set] = useState(data);
@@ -40,20 +40,20 @@ const PhotoGrid = ({ data }) => {
               willChange: "transform, width, height, opacity",
               overflow: "hidden",
               transform: xy.interpolate(
-                (x, y) => `translate3d(${x}px,${y}px,0)`
+                (x, y) => `translate3d(${x}px,${y - 15}px,0)`
               ),
               ...rest
             }}>
             <div
               style={{
                 backgroundImage: `url(${item.css})`,
-                // position: "relative",
+                position: "relative",
                 backgroundSize: "cover",
-                margin: "15px",
+                margin: "5px",
                 backgroundPosition: "center center",
-                width: width,
+                width: `${width - 10}px`,
                 height: "100%",
-                maxWidth: "180px",
+                maxWidth: "170px",
                 overflow: "hidden",
                 textTransform: "uppercase",
                 fontSize: "10px",

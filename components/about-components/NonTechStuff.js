@@ -1,5 +1,5 @@
 import React from "react";
-import PhotoGrid from "./PhotoGrid";
+import PhotoFlexColumns from "./PhotoFlexColumns";
 import { Card, FlexList } from "./Card";
 const NonTechStuff = () => {
   const data = [
@@ -29,7 +29,7 @@ const NonTechStuff = () => {
         </FlexList>
 
         <div className="footer">
-          <PhotoGrid data={data} />
+          <PhotoFlexColumns data={data} />
         </div>
       </Card>
     </section>

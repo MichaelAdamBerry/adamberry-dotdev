@@ -45,6 +45,7 @@ const Social = () => {
             display: flex;
             justify-content: space-between;
             max-width: 30rem;
+            margin: auto
         }
 
         .social div {

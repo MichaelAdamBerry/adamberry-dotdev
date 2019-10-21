@@ -3,8 +3,10 @@ import { useSpring, animated } from "react-spring";
 import Link from "next/link";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSitemap, faTerminal } from "@fortawesome/free-solid-svg-icons";
+
 import { library } from "@fortawesome/fontawesome-svg-core";
-library.add(fab);
+library.add(fab, faSitemap, faTerminal);
 
 const MobileNav = props => {
   const [isOpen, toggleOpen] = useState(false);
@@ -43,34 +45,34 @@ const MobileNav = props => {
               style={{ width: "20px", height: "20px" }}>
               <title>close-btn</title>
               <path
-                stroke="#fff"
-                fill="#fff"
+                stroke="#293238"
+                fill="#293238"
                 d="M9.3,7.5l5.3-5.4a1.1,1.1,0,0,0,0-1.7,1.1,1.1,0,0,0-1.7,0L7.5,5.7,2.1.4A1.1,1.1,0,0,0,.4.4a1.1,1.1,0,0,0,0,1.7L5.7,7.5.4,12.9a1.1,1.1,0,0,0,0,1.7,1.1,1.1,0,0,0,1.7,0h0L7.5,9.3l5.4,5.3a1.2,1.2,0,0,0,1.7-1.7Z"
               />
             </svg>
           </button>
-          <div
-            className="nav-item"
-            style={{ gridRow: "1", gridColumn: "2/6", alignSelf: "end" }}>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
+          <div className="navs">
+            <div className="nav-item">
+              <Link href="/">
+                <a>Home</a>
+              </Link>
+            </div>
+
+            <div className="nav-item">
+              <Link href="/about">
+                <a>About</a>
+              </Link>
+            </div>
+            <div className="nav-item">
+              <Link href="/portfolio">
+                <a>Portfolio</a>
+              </Link>
+            </div>
+            <div className="nav-item">
+              <a href="https://dank-nugs.now.sh/blog">Blog</a>
+            </div>
           </div>
 
-          <div
-            className="nav-item"
-            style={{ gridRow: "2", gridColumn: "2/6", alignSelf: "center" }}>
-            <Link href="/about">
-              <a>About</a>
-            </Link>
-          </div>
-          <div
-            className="nav-item"
-            style={{ gridRow: "3", gridColumn: "2/6", alignSelf: "top" }}>
-            <Link href="/portfolio">
-              <a>Portfolio</a>
-            </Link>
-          </div>
           <div className="social">
             <div className="item">
               <a href="https://github.com/michaeladamberry">
@@ -78,7 +80,7 @@ const MobileNav = props => {
               </a>
             </div>
             <div className="item">
-              <a href="https://linkedin/in/michaeladamberry">
+              <a href="https://linkedin.com/in/michaeladamberry">
                 <FontAwesomeIcon
                   icon={["fab", "linkedin"]}
                   style={iconStyles}
@@ -87,7 +89,7 @@ const MobileNav = props => {
             </div>
 
             <div className="item">
-              <a href="https://twitter.com/michaeladamberry">
+              <a href="https://twitter.com/_Adam_Berry">
                 <FontAwesomeIcon icon={["fab", "twitter"]} style={iconStyles} />
               </a>
             </div>
@@ -95,56 +97,66 @@ const MobileNav = props => {
         </div>
       </animated.div>
 
-      <span className="mobile-nav">
+      <span className={`${isOpen === true ? "inactive" : "active"} mobile-nav`}>
         <button onClick={() => toggleOpen(!isOpen)}>
-          <div
-            style={{
-              transform: isOpen ? "rotate(90deg)" : "none",
-              stroke: isOpen ? "white" : "black"
-            }}>
-            <svg
-              style={{ fill: isOpen && "#fff", width: "25px", height: "25px" }}
-              viewBox="0 0 265.2 175.3">
-              <title>hamburger-menu</title>
-              <path d="M132.7,165.3H257.1a17.5,17.5,0,0,1,4,.1,4.9,4.9,0,0,1,4.1,5c-.1,2.7-1.7,4.3-4.3,4.8a26.7,26.7,0,0,1-4,.1H8.5a33.9,33.9,0,0,1-4.5-.2,4.4,4.4,0,0,1-4-4.4c-.1-2.7,1.1-4.6,3.7-5.2a21,21,0,0,1,5-.2Z" />
-              <path d="M132.3,92.6H6.3C3,92.6.1,91.7.1,87.8s2.7-5.3,6.3-5.3H255.8c4,0,8.6-.8,9.3,4.9.5,3.8-2.2,5.2-9.4,5.2Z" />
-              <path d="M132.8,0H256.2c6.7,0,9.4,1.4,8.9,5.1-.6,5.5-4.9,5-8.8,5H7.9A16.5,16.5,0,0,1,3,9.4C.7,8.7-.2,6.7.1,4.3A4.3,4.3,0,0,1,3.8.2,33.9,33.9,0,0,1,8.3,0Z" />
-            </svg>
+          <div className="site-map">
+            <FontAwesomeIcon icon="sitemap" />
           </div>
         </button>
       </span>
 
       <style jsx>
         {`
-          
-
             button.close {
               position: absolute;
-              top: 20px;
-              right: 20px;
+              top: 70%;
+              right: 0rem;
+              background-color: var(--dark-color-text-default); 
+              color: var(--dark-color-base);
+
+            }
+
+            .site-map {
+              transform: rotate(-90deg) translate3d(0, -1.5rem, 0);
+    font-size: 1.4rem;
+    line-height: 4rem;
+    color: var(--dark-color-base);
+    stroke: black;
             }
         
             .mobile-nav {
+              width:2.5rem;
+              height: 5rem;
               position: fixed;
-              top: 1.7rem;
-              left: 1rem;
+              z-index: 800;
+              top: 70%;
+              left: 0rem;
+              background-color: var(--blueish);
+              
+            }
+
+            .mobile-nav button {
+              animation: colorchange 10s linear infinite alternate both;
+
             }
 
             .mobile-nav h2,  {
                 margin: 0;
-                height: 2rem;
+                height: 1rem;
             }
             .social {
              
               grid-column: 1/6;
-              grid-row: 5/6;
+              grid-row: 1/2;
               justify-content: center;
               display: flex;
+              align-self: center;
     
             }
 
             .item a {
               color: var(--color-dark-text-default);
+              
             }
             .link-container {
                 width: 100%;
@@ -159,11 +171,41 @@ const MobileNav = props => {
             
             }
 
+            .navs {
+              grid-row: 2/5;
+              grid-column: 1/6;
+              padding-left: 6rem;
+              padding-top: 8rem;
+              height: 40vh;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
+              -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+              flex-direction: column;
+              -webkit-box-pack: justify;
+              -webkit-justify-content: space-between;
+              -ms-flex-pack: justify;
+              justify-content: space-between;
+}
+
+
+
+
+
+
+            }
+
             .nav-item a {
                 color: var(--color-dark-text-default);
                 text-decoration: none;
                 font-size: 1.5rem;
+                margin-right: 1rem;
+
             }
+
+           
 
             
 
@@ -172,10 +214,10 @@ const MobileNav = props => {
             button {
               font-size: 1.5rem;
               cursor: pointer;
-            
-              background: none;
+              width: 2.5rem;
+              height: 5rem;
               border: none;
-              color: white;
+         
             }
 
             h2 {
@@ -184,10 +226,14 @@ const MobileNav = props => {
               font-size: 2.5rem;
               line-height: 2rem
             }
-
-            button:focus {
-              outline: none;
+            
+            span.inactive
+            {
+              position: initial;
+              animation: btn-fadeout 1s cubic-bezier(0, 1, 0.5, 1) 10ms 1 normal none
+      running;
             }
+            
           }
         `}
       </style>

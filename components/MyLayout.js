@@ -92,7 +92,7 @@ export default function Layout({ children }) {
             --dark-color-text-default: #f0f2f3;
             --dark-color-base: #293238;
             --dark-color-accent: #ec1a62;
-            --purp-gradient: linear-gradient(#861657, #fb8ccc);
+            --purp-gradient: linear-gradient(45deg, #861657, #fb8ccc);
           }
 
           .blue {
@@ -114,6 +114,85 @@ export default function Layout({ children }) {
             margin: auto;
           }
 
+          @keyframes fadein {
+            from {
+              transform: translate3d(1000px, 0px, 0);
+              opacity: 0;
+            }
+            to {
+              transform: translate3d(0px. 0px 0);
+              opacity: 1;
+            }
+          }
+
+          @-webkit-keyframes fadein {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+
+          @keyframes fadeout {
+            from {
+              transform: translate3d(0px. 0px 0);
+              opacity: 1;
+            }
+            to {
+              transform: translate3d(-1000px, 0px, 0);
+              opacity: 0;
+            }
+          }
+
+          @-webkit-keyframes fadeout {
+            from {
+              transform: translate3d(0px. 0px 0);
+              opacity: 1;
+            }
+            to {
+              transform: translate3d(-1000px, 0px, 0);
+              opacity: 0;
+            }
+          }
+
+          @keyframes btn-fadeout {
+            0% {
+              transform: translate3d(0px. 0px 0);
+              opacity: 1;
+            }
+            50% {
+              transform: rotate(360deg);
+            }
+            100% {
+              transform: translate3d(-1000px, 0px, 0);
+              opacity: 0;
+            }
+          }
+
+          @-webkit-keyframes btn-fadeout {
+            0% {
+              transform: translate3d(0px. 0px 0);
+              opacity: 1;
+            }
+            50% {
+              transform: rotate(360deg);
+            }
+            100% {
+              transform: translate3d(-1000px, 0px, 0);
+              opacity: 0;
+            }
+          }
+
+          @keyframes colorchange {
+            from {
+              background: #9ab6bb;
+            }
+            to {
+              background: #fb8ccc;
+            }
+          }
+
           @media (max-width: 800px) {
             .site-container {
               grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -124,7 +203,7 @@ export default function Layout({ children }) {
           @media (max-width: 425px) {
             .site-container {
               grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-              grid-template-rows: auto;
+              grid-template-rows: 80px 25vh 25vh 25vh 10vh;
             }
 
             .desktop-nav-container {

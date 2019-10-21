@@ -34,6 +34,7 @@
     "react-dom": "^16.9.0",
     "react-instagram-embed": "^1.5.0",
     "react-spring": "^8.0.27",
+    "react-transition-group": "^4.3.0",
     "resize-observer-polyfill": "^1.5.1",
     "styled-components": "^5.0.0-beta.8-groupsizefix",
     "yup": "^0.27.0"

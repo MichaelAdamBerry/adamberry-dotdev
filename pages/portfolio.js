@@ -14,9 +14,16 @@ const Portfolio = () => {
   const [videoIsOpen, setVideoOpen] = useState(false);
   const [description, setDescription] = useState();
   const [title, setTitle] = useState();
+  const [tech, setTech] = useState();
+  const [url, setUrl] = useState();
+  const [data, setData] = useState();
 
   const loadVideo = project => {
-    const { mp4, description, title } = project;
+    console.log("project passed to load video", project);
+    const { mp4, description, title, tech, url, data } = project;
+    setUrl(url);
+    setTech(tech);
+    setData(data);
     setMp4Src(mp4);
     setTitle(title);
     setDescription(description);
@@ -61,6 +68,9 @@ const Portfolio = () => {
           description={description}
           setVideoOpen={setVideoOpen}
           title={title}
+          url={url}
+          tech={tech}
+          data={data}
         />
       </VideoOverlay>
     </Layout>
@@ -71,7 +81,7 @@ const VideoOverlay = styled.div`
   display: ${props => (props.videoIsOpen ? "block" : "none")};
   grid-column: 1/6;
   grid-row: 1/6;
-  background-color: black;
+  background-color: var(--dark-color-base);
   opacity: ${props => (props.videoIsOpen ? ".99" : 0)};
 `;
 

@@ -6,8 +6,6 @@ export default () => {
     <Layout
       bgImg="../static/bg-landscape-bridge.png"
       bgImgSm="../static/bg-profile-bridge.png">
-      <Title name={"About Me"} />
-
       <Accordian />
     </Layout>
   );

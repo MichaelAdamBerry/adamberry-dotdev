@@ -1,7 +1,7 @@
 import React from "react";
 import { useSpring, animated, config } from "react-spring";
 
-const Title = ({ name, subtitle }) => {
+const Title = ({ name, subtitle, suffix }) => {
   const { opacity, xyz } = useSpring({
     from: {
       xyz: [0, -50, 0],
@@ -9,14 +9,15 @@ const Title = ({ name, subtitle }) => {
     },
     opacity: 1,
     xyz: [0, -1, 1],
-    config: config.wobbly
+    config: config.wobbly,
+    delay: subtitle ? 11000 : 1000
   });
   return (
     <>
       <div className="name">
         <h1>{name}</h1>
 
-        <animated.h1
+        <animated.p
           style={{
             display: "flex",
             margin: "0",
@@ -25,10 +26,17 @@ const Title = ({ name, subtitle }) => {
               (x, y, z) => `translate3d(${x}rem, ${y}rem, ${z}px )`
             )
           }}>
-          <span>.</span>
-        </animated.h1>
+          {!suffix ? (
+            <span>.</span>
+          ) : (
+            <>
+              <span>.</span>
+              <span>dev</span>
+            </>
+          )}
+        </animated.p>
       </div>
-      {subtitle && <h2>{subtitle}</h2>}
+
       <style jsx>{`
         .name {
           grid-column: 2/4;
@@ -43,23 +51,22 @@ const Title = ({ name, subtitle }) => {
           transform: translate3d(0.5rem, 0px, 0px);
         }
 
-        h2 {
-          grid-column: 2/4;
-          grid-row: 1/3;
-          justify-self: start;
-          align-self: center;
-          color: var(--dark-purp);
-        }
-
         .name h1,
+        p,
         h2 {
+          font-size: 32px;
           font-family: "Nunito", sans-serif;
         }
 
         .name span {
-          font-size: 3rem;
-          margin: 0;
           color: var(--blueish);
+          padding-top: 2rem;
+        }
+
+        .name span:first-of-type {
+          padding-top: 0;
+          margin: 0;
+          font-size: 3rem;
         }
 
         @media (max-width: 800px) {
@@ -68,6 +75,7 @@ const Title = ({ name, subtitle }) => {
             grid-column: 1/5;
             justify-self: left;
             margin-left: 40px;
+            transform: none;
           }
           .name h1,
           h2 {
@@ -80,12 +88,24 @@ const Title = ({ name, subtitle }) => {
         }
 
         @media (max-width: 425px) {
+          h1 {
+            margin-top: 2rem;
+          }
           .name,
           h2 {
             grid-column: 1/6;
             justify-self: center;
+            align-self: end;
             margin-left: 0;
             font-size: 1rem;
+          }
+
+          .name p {
+            margin-top: -0.7rem;
+          }
+
+          .name span:first-of-type {
+            margin-top: 1.7rem;
           }
         }
       `}</style>

@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from "react";
-import TechStuff, {
-  FrontEnd,
-  DataViz,
-  ECommerce,
-  JamStack
-} from "./about-components/TechStuff";
-
-import MobileMenu from "./about-components/MobileMenu";
+import FrontEnd from "./about-components/FrontEnd";
+import DataViz from "./about-components/DataViz";
+import JamStack from "./about-components/JamStack";
+import ECommerce from "./about-components/ECommerce";
+import NewMobileMenu from "./about-components/NewMobileMenu";
 import NonTechStuff from "./about-components/NonTechStuff";
 import ActingStuff from "./about-components/ActingStuff";
 import Social from "./about-components/Social";
 import Production from "./about-components/Production";
 import Tldr from "./about-components/Tldr";
 import Frame from "./about-components/Frame";
-import styled from "@emotion/styled";
 
 const Accordian = () => {
   const [windowWidth, setWindowWidth] = useState(800);
   const [socialOn, toggleSocial] = useState(false);
   const [pastWork, togglePastWork] = useState(false);
-  const [tldrOn, toggleTldr] = useState(false);
+  const [tldrOn, toggleTldr] = useState(true);
   const [workOn, toggleWork] = useState(false);
   const [aboutOn, toggleAbout] = useState(false);
 
@@ -40,9 +36,15 @@ const Accordian = () => {
   }, []);
 
   const closeContent = () => {
+    toggleTldr(false);
     toggleTechStuff(false);
+    toggleFrontEnd(false);
+    toggleJamStack(false);
+    toggleDataViz(false);
+    toggleECommerce(false);
     toggleNonTechStuff(false);
     toggleActingSection(false);
+    toggleSocial(false);
     toggleCarpentrySection(false);
   };
 
@@ -75,7 +77,7 @@ const Accordian = () => {
               closeTech();
               toggleTldr(!tldrOn);
             }}>
-            tldr;
+            TL;DR
           </button>
         </h3>
         <h3>
@@ -133,7 +135,7 @@ const Accordian = () => {
                       closeTech();
                       toggleECommerce(true);
                     }}>
-                    e-commerce
+                    E-Commerce
                   </button>
                 </h4>
               </Frame>
@@ -204,12 +206,7 @@ const Accordian = () => {
             className={socialOn && "underline"}
             onClick={() => {
               closeContent();
-              closeTech();
-              toggleTldr(false);
-              togglePastWork(false);
-              toggleWork(false);
               toggleSocial(!socialOn);
-              toggleAbout(!aboutOn);
             }}>
             About Me
           </button>
@@ -220,7 +217,8 @@ const Accordian = () => {
           </Frame>
         </div>
       </div>
-      <MobileMenu
+
+      <NewMobileMenu
         windowWidth={windowWidth}
         toggleTechStuff={toggleTechStuff}
         closeTech={closeTech}
@@ -236,6 +234,7 @@ const Accordian = () => {
         toggleSocial={toggleSocial}
         toggleTldr={toggleTldr}
       />
+
       <div className="rendered-content">
         {tldrOn && <Tldr />}
         {actingSectionOn && <ActingStuff />}
@@ -372,7 +371,9 @@ const Accordian = () => {
           }
           .rendered-content {
             grid-column: 1/6;
-            grid-row: 2/6;
+            grid-row: 2/4;
+            margin: initial;
+            margin-left: 3%;
           }
         }
       `}</style>
