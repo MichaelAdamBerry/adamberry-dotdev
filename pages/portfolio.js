@@ -38,25 +38,36 @@ const Portfolio = () => {
         <ProjectContainer
           key={Math.random() * 100}
           rowStart={2}
-          onClick={() => loadVideo(projects[3])}>
-          <ProjectCard cardObj={projects[3]} />
+          onClick={() => loadVideo(projects[5])}
+        >
+          <ProjectCard cardObj={projects[5]} />
         </ProjectContainer>
         <ProjectContainer
           key={Math.random() * 100}
           rowStart={3}
-          onClick={() => loadVideo(projects[2])}>
-          <ProjectCard cardObj={projects[2]} />
+          onClick={() => loadVideo(projects[3])}
+        >
+          <ProjectCard cardObj={projects[3]} />
         </ProjectContainer>
         <ProjectContainer
           key={Math.random() * 100}
           rowStart={4}
-          onClick={() => loadVideo(projects[1])}>
-          <ProjectCard cardObj={projects[1]} />
+          onClick={() => loadVideo(projects[2])}
+        >
+          <ProjectCard cardObj={projects[2]} />
         </ProjectContainer>
         <ProjectContainer
           key={Math.random() * 100}
           rowStart={5}
-          onClick={() => loadVideo(projects[4])}>
+          onClick={() => loadVideo(projects[1])}
+        >
+          <ProjectCard cardObj={projects[1]} />
+        </ProjectContainer>
+        <ProjectContainer
+          key={Math.random() * 100}
+          rowStart={6}
+          onClick={() => loadVideo(projects[4])}
+        >
           <ProjectCard cardObj={{ ...projects[4], col: 1 }} />
         </ProjectContainer>
       </ProjectList>

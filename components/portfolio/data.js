@@ -56,6 +56,19 @@ const data = {
       mp4: "static/data-views.mp4",
       description:
         "Front end for data dashboard application. Charts were built with D3 using Canvas and SVG elements and Mapbox.  Random mock data generated on each page load."
+    },
+
+    {
+      col: 1,
+      row: 1,
+      tech: ["Svelte", "D3.js", "Firebase"],
+      data: "Generated Data",
+      url: "https://eleftable.michaeladamberry3.now.sh/",
+      title: "Eleftable",
+      img: "static/eleftable-cover-img.png",
+      mp4: "static/eleftable-desktop.mp4",
+      description:
+        "Interactive survey and data visualization project exploring Democratic Presidential candidates favorbility and likability"
     }
   ]
 };

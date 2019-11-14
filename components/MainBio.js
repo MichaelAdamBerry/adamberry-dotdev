@@ -36,13 +36,12 @@ const MainBio = () => {
           ) : (
             <>
               <p>
-                Hey! I'm Michael Adam Berry. You can call me Adam, although I'll
-                also answer to "Hey you!" or "Jerome". I'm a web developer
-                specializing in all things client side with a passion for
-                exploring what's possible with HTML, Javascript, and CSS. I've
-                made blogs, e-commerce sites, data visualizations, games and
-                generative art projects using modern web technologies and
-                frameworks.
+                Hey! I'm Michael Adam Berry. I'm a web developer specializing in
+                all things client side with a passion for exploring what's
+                possible with HTML, Javascript, and CSS. I've made blogs,
+                e-commerce sites, data visualizations, interactive surveys,
+                games and generative art projects using modern web technologies
+                and frameworks.
               </p>
               <p>
                 Before getting into programming, I was an actor and appeared in
